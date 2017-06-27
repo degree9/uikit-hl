@@ -1,4 +1,4 @@
-(ns ^{:hoplon/page "index.html"} docs.index
+(ns ^{:hoplon/page "app.html"} docs.index
   (:require [hoplon.core :as hl]
             [javelin.core :as j]
             [hoplon.jquery]
