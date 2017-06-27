@@ -1,2 +1,2 @@
 # uikit-hl
-UIKit v3 for Hoplon
+UIKit v3 Components for Hoplon
