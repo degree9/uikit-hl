@@ -2,6 +2,6 @@
  [org.clojure/clojurescript  "1.9.542"]
  [adzerk/boot-cljs           "2.0.0" :scope "test"]
  [cljsjs/uikit               "3.0.0-beta.25-1"]
- [degree9/boot-semver        "1.4.4" :scope "test"]
+ [degree9/boot-semver        "1.6.0" :scope "test"]
  [degree9/boot-npm           "1.4.0" :scope "test"]
- [hoplon/hoplon              "7.0.1"]]
+ [hoplon/hoplon              "7.0.2"]]
