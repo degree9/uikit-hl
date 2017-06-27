@@ -18,9 +18,9 @@ return UIkit.nav(elem,cljs.core.clj__GT_js.call(null,v));
  */
 uikit_hl.nav.nav = (function() { 
 var uikit_hl$nav$nav__delegate = function (args__9094__auto__){
-var vec__14615 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__14615,(0),null);
-var kids = cljs.core.nth.call(null,vec__14615,(1),null);
+var vec__10065 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10065,(0),null);
+var kids = cljs.core.nth.call(null,vec__10065,(1),null);
 var nav = new cljs.core.Keyword(null,"uk-nav","uk-nav",-2072227397).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.nav._STAR_uk_nav_STAR_);
 var default$ = new cljs.core.Keyword(null,"default","default",-1987822328).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.nav._STAR_default_STAR_);
 var parent_icon = new cljs.core.Keyword(null,"parent-icon","parent-icon",-666927147).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.nav._STAR_parent_icon_STAR_);
@@ -30,14 +30,14 @@ return hoplon.core.ul.call(null,uikit_hl.core.assoc_class.call(null,attr__$1,new
 var uikit_hl$nav$nav = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__14618__i = 0, G__14618__a = new Array(arguments.length -  0);
-while (G__14618__i < G__14618__a.length) {G__14618__a[G__14618__i] = arguments[G__14618__i + 0]; ++G__14618__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__14618__a,0,null);
+var G__10068__i = 0, G__10068__a = new Array(arguments.length -  0);
+while (G__10068__i < G__10068__a.length) {G__10068__a[G__10068__i] = arguments[G__10068__i + 0]; ++G__10068__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10068__a,0,null);
 } 
 return uikit_hl$nav$nav__delegate.call(this,args__9094__auto__);};
 uikit_hl$nav$nav.cljs$lang$maxFixedArity = 0;
-uikit_hl$nav$nav.cljs$lang$applyTo = (function (arglist__14619){
-var args__9094__auto__ = cljs.core.seq(arglist__14619);
+uikit_hl$nav$nav.cljs$lang$applyTo = (function (arglist__10069){
+var args__9094__auto__ = cljs.core.seq(arglist__10069);
 return uikit_hl$nav$nav__delegate(args__9094__auto__);
 });
 uikit_hl$nav$nav.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$nav$nav__delegate;
@@ -49,22 +49,22 @@ return uikit_hl$nav$nav;
  */
 uikit_hl.nav.header = (function() { 
 var uikit_hl$nav$header__delegate = function (args__9094__auto__){
-var vec__14623 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__14623,(0),null);
-var kids = cljs.core.nth.call(null,vec__14623,(1),null);
+var vec__10073 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10073,(0),null);
+var kids = cljs.core.nth.call(null,vec__10073,(1),null);
 return hoplon.core.li.call(null,uikit_hl.core.assoc_class.call(null,attr,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"uk-nav-header","uk-nav-header",-1823353208),true], null)),kids);
 };
 var uikit_hl$nav$header = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__14626__i = 0, G__14626__a = new Array(arguments.length -  0);
-while (G__14626__i < G__14626__a.length) {G__14626__a[G__14626__i] = arguments[G__14626__i + 0]; ++G__14626__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__14626__a,0,null);
+var G__10076__i = 0, G__10076__a = new Array(arguments.length -  0);
+while (G__10076__i < G__10076__a.length) {G__10076__a[G__10076__i] = arguments[G__10076__i + 0]; ++G__10076__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10076__a,0,null);
 } 
 return uikit_hl$nav$header__delegate.call(this,args__9094__auto__);};
 uikit_hl$nav$header.cljs$lang$maxFixedArity = 0;
-uikit_hl$nav$header.cljs$lang$applyTo = (function (arglist__14627){
-var args__9094__auto__ = cljs.core.seq(arglist__14627);
+uikit_hl$nav$header.cljs$lang$applyTo = (function (arglist__10077){
+var args__9094__auto__ = cljs.core.seq(arglist__10077);
 return uikit_hl$nav$header__delegate(args__9094__auto__);
 });
 uikit_hl$nav$header.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$nav$header__delegate;
@@ -76,9 +76,9 @@ return uikit_hl$nav$header;
  */
 uikit_hl.nav.item = (function() { 
 var uikit_hl$nav$item__delegate = function (args__9094__auto__){
-var vec__14631 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__14631,(0),null);
-var kids = cljs.core.nth.call(null,vec__14631,(1),null);
+var vec__10081 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10081,(0),null);
+var kids = cljs.core.nth.call(null,vec__10081,(1),null);
 var parent = new cljs.core.Keyword(null,"parent","parent",-878878779).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.nav._STAR_parent_STAR_);
 var active = new cljs.core.Keyword(null,"active","active",1895962068).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.nav._STAR_active_STAR_);
 var title = new cljs.core.Keyword(null,"title","title",636505583).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.nav._STAR_title_STAR_);
@@ -89,14 +89,14 @@ return hoplon.core.li.call(null,uikit_hl.core.assoc_class.call(null,attr__$1,new
 var uikit_hl$nav$item = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__14634__i = 0, G__14634__a = new Array(arguments.length -  0);
-while (G__14634__i < G__14634__a.length) {G__14634__a[G__14634__i] = arguments[G__14634__i + 0]; ++G__14634__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__14634__a,0,null);
+var G__10084__i = 0, G__10084__a = new Array(arguments.length -  0);
+while (G__10084__i < G__10084__a.length) {G__10084__a[G__10084__i] = arguments[G__10084__i + 0]; ++G__10084__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10084__a,0,null);
 } 
 return uikit_hl$nav$item__delegate.call(this,args__9094__auto__);};
 uikit_hl$nav$item.cljs$lang$maxFixedArity = 0;
-uikit_hl$nav$item.cljs$lang$applyTo = (function (arglist__14635){
-var args__9094__auto__ = cljs.core.seq(arglist__14635);
+uikit_hl$nav$item.cljs$lang$applyTo = (function (arglist__10085){
+var args__9094__auto__ = cljs.core.seq(arglist__10085);
 return uikit_hl$nav$item__delegate(args__9094__auto__);
 });
 uikit_hl$nav$item.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$nav$item__delegate;
@@ -108,22 +108,22 @@ return uikit_hl$nav$item;
  */
 uikit_hl.nav.subnav = (function() { 
 var uikit_hl$nav$subnav__delegate = function (args__9094__auto__){
-var vec__14639 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__14639,(0),null);
-var kids = cljs.core.nth.call(null,vec__14639,(1),null);
+var vec__10089 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10089,(0),null);
+var kids = cljs.core.nth.call(null,vec__10089,(1),null);
 return hoplon.core.ul.call(null,uikit_hl.core.assoc_class.call(null,attr,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"uk-nav-sub","uk-nav-sub",1674558158),true], null)),kids);
 };
 var uikit_hl$nav$subnav = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__14642__i = 0, G__14642__a = new Array(arguments.length -  0);
-while (G__14642__i < G__14642__a.length) {G__14642__a[G__14642__i] = arguments[G__14642__i + 0]; ++G__14642__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__14642__a,0,null);
+var G__10092__i = 0, G__10092__a = new Array(arguments.length -  0);
+while (G__10092__i < G__10092__a.length) {G__10092__a[G__10092__i] = arguments[G__10092__i + 0]; ++G__10092__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10092__a,0,null);
 } 
 return uikit_hl$nav$subnav__delegate.call(this,args__9094__auto__);};
 uikit_hl$nav$subnav.cljs$lang$maxFixedArity = 0;
-uikit_hl$nav$subnav.cljs$lang$applyTo = (function (arglist__14643){
-var args__9094__auto__ = cljs.core.seq(arglist__14643);
+uikit_hl$nav$subnav.cljs$lang$applyTo = (function (arglist__10093){
+var args__9094__auto__ = cljs.core.seq(arglist__10093);
 return uikit_hl$nav$subnav__delegate(args__9094__auto__);
 });
 uikit_hl$nav$subnav.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$nav$subnav__delegate;

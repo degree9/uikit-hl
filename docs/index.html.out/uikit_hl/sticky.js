@@ -12,9 +12,9 @@ return UIkit.sticky(elem,cljs.core.clj__GT_js.call(null,v));
  */
 uikit_hl.sticky.sticky = (function() { 
 var uikit_hl$sticky$sticky__delegate = function (args__9094__auto__){
-var vec__9966 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__9966,(0),null);
-var kids = cljs.core.nth.call(null,vec__9966,(1),null);
+var vec__9726 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__9726,(0),null);
+var kids = cljs.core.nth.call(null,vec__9726,(1),null);
 var sticky = new cljs.core.Keyword(null,"uk-sticky","uk-sticky",-1824121267).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.sticky._STAR_uk_sticky_STAR_);
 var attr__$1 = cljs.core.assoc.call(null,attr,new cljs.core.Keyword(null,"uk-sticky","uk-sticky",-1824121267),sticky);
 return hoplon.core.div.call(null,attr__$1,kids);
@@ -22,14 +22,14 @@ return hoplon.core.div.call(null,attr__$1,kids);
 var uikit_hl$sticky$sticky = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__9969__i = 0, G__9969__a = new Array(arguments.length -  0);
-while (G__9969__i < G__9969__a.length) {G__9969__a[G__9969__i] = arguments[G__9969__i + 0]; ++G__9969__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__9969__a,0,null);
+var G__9729__i = 0, G__9729__a = new Array(arguments.length -  0);
+while (G__9729__i < G__9729__a.length) {G__9729__a[G__9729__i] = arguments[G__9729__i + 0]; ++G__9729__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__9729__a,0,null);
 } 
 return uikit_hl$sticky$sticky__delegate.call(this,args__9094__auto__);};
 uikit_hl$sticky$sticky.cljs$lang$maxFixedArity = 0;
-uikit_hl$sticky$sticky.cljs$lang$applyTo = (function (arglist__9970){
-var args__9094__auto__ = cljs.core.seq(arglist__9970);
+uikit_hl$sticky$sticky.cljs$lang$applyTo = (function (arglist__9730){
+var args__9094__auto__ = cljs.core.seq(arglist__9730);
 return uikit_hl$sticky$sticky__delegate(args__9094__auto__);
 });
 uikit_hl$sticky$sticky.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$sticky$sticky__delegate;

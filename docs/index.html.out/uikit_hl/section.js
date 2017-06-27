@@ -19,9 +19,9 @@ uikit_hl.section._STAR_overlap_STAR_ = null;
  */
 uikit_hl.section.section = (function() { 
 var uikit_hl$section$section__delegate = function (args__9094__auto__){
-var vec__15989 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__15989,(0),null);
-var kids = cljs.core.nth.call(null,vec__15989,(1),null);
+var vec__9883 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__9883,(0),null);
+var kids = cljs.core.nth.call(null,vec__9883,(1),null);
 var default$ = new cljs.core.Keyword(null,"default","default",-1987822328).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.section._STAR_default_STAR_);
 var muted = new cljs.core.Keyword(null,"muted","muted",1275109029).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.section._STAR_muted_STAR_);
 var primary = new cljs.core.Keyword(null,"primary","primary",817773892).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.section._STAR_primary_STAR_);
@@ -38,14 +38,14 @@ return hoplon.core.div.call(null,uikit_hl.core.assoc_class.call(null,attr__$1,cl
 var uikit_hl$section$section = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__15992__i = 0, G__15992__a = new Array(arguments.length -  0);
-while (G__15992__i < G__15992__a.length) {G__15992__a[G__15992__i] = arguments[G__15992__i + 0]; ++G__15992__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__15992__a,0,null);
+var G__9886__i = 0, G__9886__a = new Array(arguments.length -  0);
+while (G__9886__i < G__9886__a.length) {G__9886__a[G__9886__i] = arguments[G__9886__i + 0]; ++G__9886__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__9886__a,0,null);
 } 
 return uikit_hl$section$section__delegate.call(this,args__9094__auto__);};
 uikit_hl$section$section.cljs$lang$maxFixedArity = 0;
-uikit_hl$section$section.cljs$lang$applyTo = (function (arglist__15993){
-var args__9094__auto__ = cljs.core.seq(arglist__15993);
+uikit_hl$section$section.cljs$lang$applyTo = (function (arglist__9887){
+var args__9094__auto__ = cljs.core.seq(arglist__9887);
 return uikit_hl$section$section__delegate(args__9094__auto__);
 });
 uikit_hl$section$section.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$section$section__delegate;
