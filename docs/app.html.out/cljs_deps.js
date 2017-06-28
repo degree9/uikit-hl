@@ -20,6 +20,7 @@ goog.addDependency("../uikit_hl/switcher.js", ['uikit_hl.switcher'], ['cljs.core
 goog.addDependency("../uikit_hl/tab.js", ['uikit_hl.tab'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
 goog.addDependency("../uikit_hl/accordion.js", ['uikit_hl.accordion'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
 goog.addDependency("../uikit_hl/text.js", ['uikit_hl.text'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
-goog.addDependency("../docs/components.js", ['docs.components'], ['uikit_hl.table', 'javelin.core', 'uikit_hl.switcher', 'hoplon.jquery', 'cljs.core', 'hoplon.core', 'uikit_hl.tab', 'uikit_hl.accordion', 'uikit_hl.text']);
+goog.addDependency("../uikit_hl/alert.js", ['uikit_hl.alert'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
+goog.addDependency("../docs/components.js", ['docs.components'], ['uikit_hl.table', 'javelin.core', 'uikit_hl.switcher', 'hoplon.jquery', 'cljs.core', 'hoplon.core', 'uikit_hl.tab', 'uikit_hl.accordion', 'uikit_hl.text', 'uikit_hl.alert']);
 goog.addDependency("../docs/index.js", ['docs.index'], ['uikit_hl.sticky', 'javelin.core', 'hoplon.jquery', 'cljs.core', 'hoplon.core', 'uikit_hl.section', 'uikit_hl.core', 'uikit_hl.container', 'uikit_hl.navbar', 'uikit_hl.offcanvas', 'uikit_hl.nav', 'docs.components']);
 goog.addDependency("../boot/cljs/main4751.js", ['boot.cljs.main4751'], ['cljs.core', 'docs.index']);

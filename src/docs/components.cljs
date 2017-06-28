@@ -3,6 +3,7 @@
             [javelin.core :as j]
             [hoplon.jquery]
             [uikit-hl.accordion :as accordion]
+            [uikit-hl.alert :as alert]
             [uikit-hl.tab :as tab]
             [uikit-hl.table :as table]
             [uikit-hl.text :as text]
@@ -57,4 +58,23 @@
        "(accordion \n"
        "  (item :title \"My Item\" \"my content.\") \n"
        "  (item :title \"My Second Item\" \"my other content.\"))"]
+    )))
+
+(hl/defelem alert [attr kids]
+  (hl/div
+    (hl/h1 "Alert")
+    (text/text :lead true "Display success, warning and error messages.")
+    (hl/h3 "Usage")
+    (text/text "")
+    (hl/div
+      (table/table :divider true
+        :headers [["Element" "Attribute" "Description"]]
+        :data    [[(hl/code "alert") "" "Child elements are used for item content."]]))
+    (demo
+      :example
+      (alert/alert "Message content.")
+      :source
+      ["(ns app.index \n"
+       "  (:require [uikit-hl.alert :refer [alert]])) \n\n"
+       "(alert/alert \"Message content.\") \n"]
     )))

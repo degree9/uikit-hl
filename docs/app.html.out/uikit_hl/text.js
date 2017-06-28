@@ -33,9 +33,9 @@ uikit_hl.text._STAR_nowrap_STAR_ = null;
  */
 uikit_hl.text.text = (function() { 
 var uikit_hl$text$text__delegate = function (args__9094__auto__){
-var vec__10506 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__10506,(0),null);
-var kids = cljs.core.nth.call(null,vec__10506,(1),null);
+var vec__10089 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10089,(0),null);
+var kids = cljs.core.nth.call(null,vec__10089,(1),null);
 var lead = new cljs.core.Keyword(null,"lead","lead",1214038903).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.text._STAR_lead_STAR_);
 var meta = new cljs.core.Keyword(null,"meta","meta",1499536964).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.text._STAR_meta_STAR_);
 var small = new cljs.core.Keyword(null,"small","small",2133478704).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.text._STAR_small_STAR_);
@@ -67,14 +67,14 @@ return hoplon.core.p.call(null,uikit_hl.core.assoc_class.call(null,attr__$1,cljs
 var uikit_hl$text$text = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__10509__i = 0, G__10509__a = new Array(arguments.length -  0);
-while (G__10509__i < G__10509__a.length) {G__10509__a[G__10509__i] = arguments[G__10509__i + 0]; ++G__10509__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__10509__a,0,null);
+var G__10092__i = 0, G__10092__a = new Array(arguments.length -  0);
+while (G__10092__i < G__10092__a.length) {G__10092__a[G__10092__i] = arguments[G__10092__i + 0]; ++G__10092__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10092__a,0,null);
 } 
 return uikit_hl$text$text__delegate.call(this,args__9094__auto__);};
 uikit_hl$text$text.cljs$lang$maxFixedArity = 0;
-uikit_hl$text$text.cljs$lang$applyTo = (function (arglist__10510){
-var args__9094__auto__ = cljs.core.seq(arglist__10510);
+uikit_hl$text$text.cljs$lang$applyTo = (function (arglist__10093){
+var args__9094__auto__ = cljs.core.seq(arglist__10093);
 return uikit_hl$text$text__delegate(args__9094__auto__);
 });
 uikit_hl$text$text.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$text$text__delegate;

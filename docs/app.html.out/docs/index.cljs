@@ -63,7 +63,8 @@
             (hl/case-tpl route
               "#"           (comp/index)
               "#attributes" (comp/attributes)
-              "#accordion"  (comp/accordion)))
+              "#accordion"  (comp/accordion)
+              "#alert"      (comp/alert)))
           (hl/div :class [:tm-sidebar-right]
             (hl/div :uk-sticky {:offset 160}
               ))))
