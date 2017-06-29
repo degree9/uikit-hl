@@ -21,7 +21,6 @@
   (comp
     (hoplon)
     (cljs)
-    (sift :move {#"(.*).cljs$" "/_includes/$1.cljs"})
     (target :dir #{"docs"})))
 
 (deftask deploy
