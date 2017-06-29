@@ -34,11 +34,12 @@
 (deftask develop
   "Build project for development."
   []
-  (merge-env! :resource-paths #{"src/uikit_hl"})
+  (merge-env! :resource-paths #{"src"})
   (comp
     (version :develop true
              :pre-release 'snapshot)
-    (sift :move {#"(.*).cljs$" "uikit_hl/$1.cljs"})
+    (sift :include #{#"uikit_hl/(.*).cljs$"})
+    (show :fileset true)
     (watch)
     (target :dir #{"target"})
     (build-jar)))
