@@ -47,3 +47,15 @@
                                       :uk-form-width-small  width-small
                                       :uk-form-width-xsmall width-xsmall
                                       :uk-form-blank        blank}) kids)))
+
+(hl/defelem fieldset [attr kids]
+  (let []
+    (hl/fieldset (core/assoc-class attr {:uk-fieldset true}) kids)))
+
+(hl/defelem legend [attr kids]
+  (let []
+    (hl/legend (core/assoc-class attr {:uk-legend true}) kids)))
+
+(hl/defelem checkbox [attr kids]
+  (let [attr (assoc attr :type "checkbox")]
+    (hl/label [(hl/input (core/assoc-class attr {:uk-checkbox true})) " " kids])))

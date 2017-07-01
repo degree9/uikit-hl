@@ -20,7 +20,9 @@
         text      (:text      attr *text*)
         link      (:link      attr *link*)
         small     (:small     attr *small*)
-        large     (:large     attr *large*)]
+        large     (:large     attr *large*)
+        attr      (dissoc     attr :default :primary :secondary :danger :text
+                                   :link :small :large)]
     (hl/button
       (core/assoc-class attr
         {:uk-button           true
