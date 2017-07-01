@@ -11,6 +11,11 @@
 (def ^:dynamic *small* nil)
 (def ^:dynamic *large* nil)
 
+(def ^:dynamic *top*    nil)
+(def ^:dynamic *bottom* nil)
+(def ^:dynamic *left*   nil)
+(def ^:dynamic *right*  nil)
+
 (hl/defelem card [attr kids]
   (let [default   (:default   attr *default*)
         primary   (:primary   attr *primary*)

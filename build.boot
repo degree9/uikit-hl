@@ -37,9 +37,8 @@
   (merge-env! :resource-paths #{"src"})
   (comp
     (version :develop true
-             :pre-release 'snapshot)
+             :build 'snapshot)
     (sift :include #{#"uikit_hl/(.*).cljs$"})
-    (show :fileset true)
     (watch)
     (target :dir #{"target"})
     (build-jar)))
