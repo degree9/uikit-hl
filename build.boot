@@ -31,6 +31,14 @@
     (build-jar)
     (push-release)))
 
+(deftask deploy-snapshot
+  "Build project for pre-release to clojars."
+  []
+  (comp
+    (version)
+    (build-jar)
+    (push-snapshot)))
+
 (deftask develop
   "Build project for development."
   []
