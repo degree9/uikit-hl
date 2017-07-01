@@ -35,7 +35,8 @@
   "Build project for pre-release to clojars."
   []
   (comp
-    (version)
+    (version :develop true
+             :build 'snapshot)
     (build-jar)
     (push-snapshot)))
 
