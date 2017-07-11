@@ -36,7 +36,7 @@
   []
   (comp
     (version :develop true
-             :build 'snapshot)
+             :pre-release 'snapshot)
     (build-jar)
     (push-snapshot)))
 
@@ -46,7 +46,7 @@
   (merge-env! :resource-paths #{"src"})
   (comp
     (version :develop true
-             :build 'snapshot)
+             :pre-release 'snapshot)
     (sift :include #{#"uikit_hl/(.*).cljs$"})
     (watch)
     (target :dir #{"target"})
