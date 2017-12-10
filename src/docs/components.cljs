@@ -4,6 +4,7 @@
             [hoplon.jquery]
             [uikit-hl.accordion :as accordion]
             [uikit-hl.alert :as alert]
+            [uikit-hl.article :as article]
             [uikit-hl.tab :as tab]
             [uikit-hl.table :as table]
             [uikit-hl.text :as text]
@@ -76,5 +77,90 @@
       :source
       ["(ns app.index \n"
        "  (:require [uikit-hl.alert :refer [alert]])) \n\n"
-       "(alert/alert \"Message content.\") \n"]
+       "(alert \"Message content.\") \n"]
+    )))
+
+(hl/defelem align [attr kids]
+  (hl/div
+    (hl/h1 "Align")
+    (text/text :lead true "Control the alignment of inline elements depending on the viewport size.")
+    (hl/h3 "Usage")
+    (text/text "To align images or other elements with spacing between the text and the element, add one of these attributes.")
+    (hl/div
+      (table/table :divider true
+        :headers [["Attribute" "Description"]]
+        :data    [[(hl/code ":uk-align")       "A map of alignments."]
+                  [(hl/code ":align-left")     "A convenience attribute."]
+                  [(hl/code ":align-left-s")   "A convenience attribute."]
+                  [(hl/code ":align-left-m")   "A convenience attribute."]
+                  [(hl/code ":align-left-l")   "A convenience attribute."]
+                  [(hl/code ":align-left-xl")  "A convenience attribute."]
+                  [(hl/code ":align-right")    "A convenience attribute."]
+                  [(hl/code ":align-right-s")  "A convenience attribute."]
+                  [(hl/code ":align-right-m")  "A convenience attribute."]
+                  [(hl/code ":align-right-l")  "A convenience attribute."]
+                  [(hl/code ":align-right-xl") "A convenience attribute."]
+                  [(hl/code ":align-center")   "A convenience attribute."]
+                  ]))
+    (demo
+      :source
+      ["(ns app.index \n"
+       "  (:require [uikit-hl.align])) \n\n"
+       "(div :align-left true \"Content.\") \n"]
+    )))
+
+(hl/defelem animation [attr kids]
+  (hl/div
+    (hl/h1 "Animation")
+    (text/text :lead true "A collection of smooth animations to use within your page.")
+    (hl/h3 "Usage")
+    (text/text "Add one of the animation classes to any element. The animation is
+                shown when the class is added, so usually immediately on page load. To show the animation at another point,
+                toggle the animation with a cell.")
+    (hl/div
+      (table/table :divider true
+        :headers [["Attribute" "Description"]]
+        :data    [[(hl/code ":uk-animation")                  "A map of animations."]
+                  [(hl/code ":animation-fade")                "A convenience attribute."]
+                  [(hl/code ":animation-scale-up")            "A convenience attribute."]
+                  [(hl/code ":animation-scale-down")          "A convenience attribute."]
+                  [(hl/code ":animation-slide-top")           "A convenience attribute."]
+                  [(hl/code ":animation-slide-bottom")        "A convenience attribute."]
+                  [(hl/code ":animation-slide-left")          "A convenience attribute."]
+                  [(hl/code ":animation-slide-right")         "A convenience attribute."]
+                  [(hl/code ":animation-slide-top-small")     "A convenience attribute."]
+                  [(hl/code ":animation-slide-bottom-small")  "A convenience attribute."]
+                  [(hl/code ":animation-slide-left-small")    "A convenience attribute."]
+                  [(hl/code ":animation-slide-right-small")   "A convenience attribute."]
+                  [(hl/code ":animation-slide-top-medium")    "A convenience attribute."]
+                  [(hl/code ":animation-slide-bottom-medium") "A convenience attribute."]
+                  [(hl/code ":animation-slide-left-medium")   "A convenience attribute."]
+                  [(hl/code ":animation-slide-right-medium")  "A convenience attribute."]
+                  [(hl/code ":animation-kenburns")            "A convenience attribute."]
+                  [(hl/code ":animation-shake")               "A convenience attribute."]
+                  ]))
+    (demo
+      :source
+      []
+    )))
+
+(hl/defelem article [attr kids]
+  (hl/div
+    (hl/h1 "Article")
+    (text/text :lead true "Create articles within your page.")
+    (hl/h3 "Usage")
+    (text/text "The article component consists of the article itself, a title and meta data.")
+    (hl/div
+      (table/table :divider true
+        :headers [["Element" "Attribute" "Description"]]
+        :data    [[(hl/code "article") ":title" "Article title."]
+                  [(hl/code "article") ":meta" "Article meta data."]
+                  [(hl/code "article") "" "Child elements are used for article content."]]))
+    (demo
+      :example
+      (article/article :title "Title" :meta "Meta Data" "Message content.")
+      :source
+      ["(ns app.index \n"
+       "  (:require [uikit-hl.article :refer [article]])) \n\n"
+       "(article :title \"Title\" :meta \"Meta Data\" \"Message content.\") \n"]
     )))

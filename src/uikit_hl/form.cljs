@@ -18,11 +18,18 @@
 (def ^:dynamic *stacked* nil)
 (def ^:dynamic *horizontal* nil)
 
+(def ^:dynamic *flip* nil)
+
 (hl/defelem form [attr kids]
   (let [stacked    (:stacked    attr *stacked*)
         horizontal (:horizontal attr *horizontal*)]
     (hl/form (core/assoc-class attr {:uk-form-stacked    stacked
-                                    :uk-form-horizontal horizontal}) kids)))
+                                     :uk-form-horizontal horizontal}) kids)))
+
+(hl/defelem icon [attr kids]
+  (let [flip (:flip attr *flip*)]
+    (hl/span (core/assoc-class attr {:uk-form-icon true
+                                     :uk-form-icon-flip flip}) kids)))
 
 (hl/defelem input [attr kids]
   (let [danger       (:danger       attr *danger*)
@@ -59,3 +66,7 @@
 (hl/defelem checkbox [attr kids]
   (let [attr (assoc attr :type "checkbox")]
     (hl/label [(hl/input (core/assoc-class attr {:uk-checkbox true})) " " kids])))
+
+(hl/defelem radio [attr kids]
+  (let [attr (assoc attr :type "radio")]
+    (hl/label [(hl/input attr :class {:uk-radio true}) " " kids])))

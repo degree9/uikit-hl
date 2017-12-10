@@ -64,7 +64,10 @@
               "#"           (comp/index)
               "#attributes" (comp/attributes)
               "#accordion"  (comp/accordion)
-              "#alert"      (comp/alert)))
+              "#alert"      (comp/alert)
+              "#align"      (comp/align)
+              "#animation"  (comp/animation)
+              "#article"    (comp/article)))
           (hl/div :class [:tm-sidebar-right]
             (hl/div :uk-sticky {:offset 160}
               ))))

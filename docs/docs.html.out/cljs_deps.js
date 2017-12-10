@@ -6,7 +6,7 @@ goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', '
 goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
 goog.addDependency("../hoplon/core.js", ['hoplon.core'], ['javelin.core', 'goog.Uri', 'cljs.core', 'goog.object', 'clojure.set', 'clojure.string', 'cljs.reader']);
 goog.addDependency("../cljsjs/development/jquery.inc.js", ['cljsjs.jquery'], []);
-goog.addDependency("../cljsjs/development/uikit.inc.js", ['cljsjs.uikit'], ['cljsjs.jquery']);
+goog.addDependency("../cljsjs/uikit/development/uikit.inc.js", ['cljsjs.uikit'], ['cljsjs.jquery']);
 goog.addDependency("../uikit_hl/core.js", ['uikit_hl.core'], ['javelin.core', 'cljs.core', 'hoplon.core', 'cljsjs.uikit']);
 goog.addDependency("../uikit_hl/sticky.js", ['uikit_hl.sticky'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
 goog.addDependency("../hoplon/jquery.js", ['hoplon.jquery'], ['cljsjs.jquery', 'cljs.core', 'hoplon.core']);
@@ -21,6 +21,7 @@ goog.addDependency("../uikit_hl/tab.js", ['uikit_hl.tab'], ['cljs.core', 'hoplon
 goog.addDependency("../uikit_hl/accordion.js", ['uikit_hl.accordion'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
 goog.addDependency("../uikit_hl/text.js", ['uikit_hl.text'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
 goog.addDependency("../uikit_hl/alert.js", ['uikit_hl.alert'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
-goog.addDependency("../docs/components.js", ['docs.components'], ['uikit_hl.table', 'javelin.core', 'uikit_hl.switcher', 'hoplon.jquery', 'cljs.core', 'hoplon.core', 'uikit_hl.tab', 'uikit_hl.accordion', 'uikit_hl.text', 'uikit_hl.alert']);
+goog.addDependency("../uikit_hl/article.js", ['uikit_hl.article'], ['cljs.core', 'hoplon.core', 'uikit_hl.core']);
+goog.addDependency("../docs/components.js", ['docs.components'], ['uikit_hl.table', 'javelin.core', 'uikit_hl.switcher', 'hoplon.jquery', 'cljs.core', 'hoplon.core', 'uikit_hl.tab', 'uikit_hl.accordion', 'uikit_hl.text', 'uikit_hl.alert', 'uikit_hl.article']);
 goog.addDependency("../docs/index.js", ['docs.index'], ['uikit_hl.sticky', 'javelin.core', 'hoplon.jquery', 'cljs.core', 'hoplon.core', 'uikit_hl.section', 'uikit_hl.core', 'uikit_hl.container', 'uikit_hl.navbar', 'uikit_hl.offcanvas', 'uikit_hl.nav', 'docs.components']);
-goog.addDependency("../boot/cljs/main4750.js", ['boot.cljs.main4750'], ['cljs.core', 'docs.index']);
+goog.addDependency("../boot/cljs/main4780.js", ['boot.cljs.main4780'], ['cljs.core', 'docs.index']);

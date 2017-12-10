@@ -18,3 +18,8 @@
   (let [offcanvas (:uk-offcanvas attr *uk-offcanvas*)
         attr (assoc attr :uk-offcanvas offcanvas)]
     (hl/div attr kids)))
+
+(hl/defelem bar [attr kids]
+  (hl/div
+    (core/assoc-class attr {:uk-offcanvas-bar true})
+    kids))

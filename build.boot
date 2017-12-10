@@ -47,7 +47,7 @@
   (comp
     (version :develop true
              :pre-release 'snapshot)
-    (sift :include #{#"uikit_hl/(.*).cljs$"})
+    (sift :include #{#"uikit_hl/(.*).clj[s]?$"})
     (watch)
     (target :dir #{"target"})
     (build-jar)))

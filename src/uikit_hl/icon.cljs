@@ -1,6 +1,7 @@
 (ns uikit-hl.icon
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            [cljsjs.uikit-icons]))
 
 (def ^:dynamic *uk-icon* "")
 (def ^:dynamic *icon*    nil)
@@ -10,24 +11,24 @@
   [elem _ v]
   (.icon js/UIkit elem (clj->js v)))
 
-(hl/defelem icon [{:keys [icon ratio] :as attr} kids]
-  (let [icon (:uk-icon attr {:icon icon :ratio ratio})
+(hl/defelem icon [attr kids]
+  (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))
         attr (assoc attr :uk-icon icon)]
-    (hl/span attr kids)))
+    (hl/span attr)))
 
-(hl/defelem link-icon [{:keys [icon ratio] :as attr} kids]
-  (let [icon (:uk-icon attr {:icon icon :ratio ratio})
+(hl/defelem link-icon [attr kids]
+  (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))
         attr (-> attr
               (assoc  :uk-icon icon)
               (dissoc :icon :ratio))]
-    (hl/a (core/assoc-class attr {:uk-icon-link true}) kids)))
+    (hl/a (core/assoc-class attr {:uk-icon-link true}))))
 
-(hl/defelem button-icon [{:keys [icon ratio] :as attr} kids]
-  (let [icon (:uk-icon attr {:icon icon :ratio ratio})
+(hl/defelem button-icon [attr kids]
+  (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))
         attr (-> attr
               (assoc  :uk-icon icon)
               (dissoc :icon :ratio))]
-    (hl/a (core/assoc-class attr {:uk-icon-button true}) kids)))
+    (hl/a (core/assoc-class attr {:uk-icon-button true}))))
 
 (hl/defelem image-icon [attr kids]
   (let []
