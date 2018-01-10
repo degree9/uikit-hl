@@ -30,9 +30,9 @@
             :uk-padding-remove-left       *padding-remove-left*
             :uk-padding-remove-right      *padding-remove-right*
             :uk-padding-remove-vertical   *padding-remove-vertical*
-            :uk-padding-remove-horizontal *padding-remove-horizontal*
-            })
-    (hl/do! elem :class )))
+            :uk-padding-remove-horizontal *padding-remove-horizontal*})
+
+    (hl/do! elem :class)))
 
 (defmethod hoplon.core/do! :padding
   [elem kw v]
