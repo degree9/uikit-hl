@@ -75,17 +75,8 @@
     (hl/div (core/assoc-class attr {:uk-navbar-item true}) kids)))
 
 (hl/defelem toggle [attr kids]
-  (let [attr (assoc attr :uk-navbar-toggle-icon "")]
-    (hl/div (core/assoc-class attr {:uk-navbar-toggle true}) kids)))
-
-(hl/defelem dropdown [attr kids]
-  (let [width (:width attr *width*)
-        attr (assoc attr :width width)]
-    (hl/div (core/assoc-class attr {:uk-navbar-dropdown true}) kids)))
-
-(hl/defelem dropdown-nav [attr kids]
   (let []
-    (hl/ul (core/assoc-class attr {:uk-nav true :uk-navbar-dropdown-nav true}) kids)))
+    (hl/a (core/assoc-class attr {:uk-navbar-toggle true}) [(hl/span :uk-navbar-toggle-icon "") kids])))
 
 (hl/defelem dropbar [attr kids]
   (let []

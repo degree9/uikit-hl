@@ -31,6 +31,15 @@
     (build-jar)
     (push-release)))
 
+(deftask deploy-snapshot
+  "Build project for pre-release to clojars."
+  []
+  (comp
+    (version :develop true
+             :pre-release 'snapshot)
+    (build-jar)
+    (push-snapshot)))
+
 (deftask develop
   "Build project for development."
   []
@@ -38,8 +47,7 @@
   (comp
     (version :develop true
              :pre-release 'snapshot)
-    (sift :include #{#"uikit_hl/(.*).cljs$"})
-    (show :fileset true)
+    (sift :include #{#"uikit_hl/(.*).clj[s]?$"})
     (watch)
     (target :dir #{"target"})
     (build-jar)))

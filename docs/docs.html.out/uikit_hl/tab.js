@@ -17,9 +17,9 @@ return UIkit.tab(elem,cljs.core.clj__GT_js.call(null,v));
  */
 uikit_hl.tab.tab = (function() { 
 var uikit_hl$tab$tab__delegate = function (args__9094__auto__){
-var vec__9867 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__9867,(0),null);
-var kids = cljs.core.nth.call(null,vec__9867,(1),null);
+var vec__10105 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10105,(0),null);
+var kids = cljs.core.nth.call(null,vec__10105,(1),null);
 var tab = new cljs.core.Keyword(null,"uk-tab","uk-tab",-657707886).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.tab._STAR_uk_tab_STAR_);
 var bottom = new cljs.core.Keyword(null,"bottom","bottom",-1550509018).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.tab._STAR_bottom_STAR_);
 var attr__$1 = cljs.core.dissoc.call(null,cljs.core.assoc.call(null,attr,new cljs.core.Keyword(null,"uk-tab","uk-tab",-657707886),tab),new cljs.core.Keyword(null,"bottom","bottom",-1550509018));
@@ -28,14 +28,14 @@ return hoplon.core.ul.call(null,uikit_hl.core.assoc_class.call(null,attr__$1,new
 var uikit_hl$tab$tab = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__9870__i = 0, G__9870__a = new Array(arguments.length -  0);
-while (G__9870__i < G__9870__a.length) {G__9870__a[G__9870__i] = arguments[G__9870__i + 0]; ++G__9870__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__9870__a,0,null);
+var G__10108__i = 0, G__10108__a = new Array(arguments.length -  0);
+while (G__10108__i < G__10108__a.length) {G__10108__a[G__10108__i] = arguments[G__10108__i + 0]; ++G__10108__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10108__a,0,null);
 } 
 return uikit_hl$tab$tab__delegate.call(this,args__9094__auto__);};
 uikit_hl$tab$tab.cljs$lang$maxFixedArity = 0;
-uikit_hl$tab$tab.cljs$lang$applyTo = (function (arglist__9871){
-var args__9094__auto__ = cljs.core.seq(arglist__9871);
+uikit_hl$tab$tab.cljs$lang$applyTo = (function (arglist__10109){
+var args__9094__auto__ = cljs.core.seq(arglist__10109);
 return uikit_hl$tab$tab__delegate(args__9094__auto__);
 });
 uikit_hl$tab$tab.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$tab$tab__delegate;
@@ -47,9 +47,9 @@ return uikit_hl$tab$tab;
  */
 uikit_hl.tab.item = (function() { 
 var uikit_hl$tab$item__delegate = function (args__9094__auto__){
-var vec__9875 = hoplon.core.parse_args.call(null,args__9094__auto__);
-var attr = cljs.core.nth.call(null,vec__9875,(0),null);
-var kids = cljs.core.nth.call(null,vec__9875,(1),null);
+var vec__10113 = hoplon.core.parse_args.call(null,args__9094__auto__);
+var attr = cljs.core.nth.call(null,vec__10113,(0),null);
+var kids = cljs.core.nth.call(null,vec__10113,(1),null);
 var active = new cljs.core.Keyword(null,"active","active",1895962068).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.tab._STAR_active_STAR_);
 var disabled = new cljs.core.Keyword(null,"disabled","disabled",-1529784218).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.tab._STAR_disabled_STAR_);
 var title = new cljs.core.Keyword(null,"title","title",636505583).cljs$core$IFn$_invoke$arity$2(attr,uikit_hl.tab._STAR_title_STAR_);
@@ -60,14 +60,14 @@ return hoplon.core.li.call(null,uikit_hl.core.assoc_class.call(null,attr__$1,new
 var uikit_hl$tab$item = function (var_args){
 var args__9094__auto__ = null;
 if (arguments.length > 0) {
-var G__9878__i = 0, G__9878__a = new Array(arguments.length -  0);
-while (G__9878__i < G__9878__a.length) {G__9878__a[G__9878__i] = arguments[G__9878__i + 0]; ++G__9878__i;}
-  args__9094__auto__ = new cljs.core.IndexedSeq(G__9878__a,0,null);
+var G__10116__i = 0, G__10116__a = new Array(arguments.length -  0);
+while (G__10116__i < G__10116__a.length) {G__10116__a[G__10116__i] = arguments[G__10116__i + 0]; ++G__10116__i;}
+  args__9094__auto__ = new cljs.core.IndexedSeq(G__10116__a,0,null);
 } 
 return uikit_hl$tab$item__delegate.call(this,args__9094__auto__);};
 uikit_hl$tab$item.cljs$lang$maxFixedArity = 0;
-uikit_hl$tab$item.cljs$lang$applyTo = (function (arglist__9879){
-var args__9094__auto__ = cljs.core.seq(arglist__9879);
+uikit_hl$tab$item.cljs$lang$applyTo = (function (arglist__10117){
+var args__9094__auto__ = cljs.core.seq(arglist__10117);
 return uikit_hl$tab$item__delegate(args__9094__auto__);
 });
 uikit_hl$tab$item.cljs$core$IFn$_invoke$arity$variadic = uikit_hl$tab$item__delegate;

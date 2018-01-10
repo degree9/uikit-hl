@@ -7,9 +7,9 @@
 (def ^:dynamic *container*   nil)
 (def ^:dynamic *parent*      nil)
 (def ^:dynamic *active*      nil)
-(def ^:dynamic *title*       nil)
-(def ^:dynamic *href*        nil)
 (def ^:dynamic *width*       nil)
+
+(def ^:dynamic *href*       nil)
 
 (defmethod hl/do! :uk-navbar
   [elem _ v]
@@ -61,10 +61,9 @@
 (hl/defelem nav-item [attr kids]
   (let [parent (:parent attr *parent*)
         active (:active attr *active*)
-        title  (:title  attr *title*)
         href   (:href   attr *href*)
-        attr   (dissoc attr :parent :active :title :href)]
-    (hl/li (core/assoc-class attr {:uk-parent parent :uk-active active}) [(hl/a :href href title) kids])))
+        attr   (dissoc attr :parent :active :href)]
+    (hl/li (core/assoc-class attr {:uk-parent parent :uk-active active}) (hl/a :href href kids))))
 
 (hl/defelem subtitle [attr kids]
   (let []
@@ -75,17 +74,8 @@
     (hl/div (core/assoc-class attr {:uk-navbar-item true}) kids)))
 
 (hl/defelem toggle [attr kids]
-  (let [attr (assoc attr :uk-navbar-toggle-icon "")]
-    (hl/div (core/assoc-class attr {:uk-navbar-toggle true}) kids)))
-
-(hl/defelem dropdown [attr kids]
-  (let [width (:width attr *width*)
-        attr (assoc attr :width width)]
-    (hl/div (core/assoc-class attr {:uk-navbar-dropdown true}) kids)))
-
-(hl/defelem dropdown-nav [attr kids]
   (let []
-    (hl/ul (core/assoc-class attr {:uk-nav true :uk-navbar-dropdown-nav true}) kids)))
+    (hl/a (core/assoc-class attr {:uk-navbar-toggle true}) [(hl/span :uk-navbar-toggle-icon "") kids])))
 
 (hl/defelem dropbar [attr kids]
   (let []

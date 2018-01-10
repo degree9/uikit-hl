@@ -3,6 +3,8 @@
             [javelin.core :as j]
             [uikit-hl.core :as core]))
 
+(def ^:dynamic *data* nil)
+
 (def ^:dynamic *caption* nil)
 (def ^:dynamic *headers* nil)
 (def ^:dynamic *footers* nil)
@@ -20,7 +22,7 @@
 (hl/defelem table [attr kids]
   (let [caption (:caption attr *caption*)
         headers (:headers attr *headers*)
-        body    (:data    attr kids)
+        body    (:data    attr (or *data* kids))
         footers (:footers attr *footers*)
         divider (:divider attr *divider*)
         striped (:striped attr *striped*)
@@ -40,6 +42,7 @@
                               :uk-table-justify justify
                               :uk-table-middle  middle
                               :uk-table-responsive responsive})
+      kids
       (hl/caption caption)
       (hl/thead (hl/for-tpl [h headers] (hl/tr (hl/for-tpl [data (j/cell= h)] (hl/th data)))))
       (hl/tbody (hl/for-tpl [b body]    (hl/tr (hl/for-tpl [data (j/cell= b)] (hl/td data)))))

@@ -1,7 +1,8 @@
 (ns uikit-hl.core
   (:require [hoplon.core :as hl]
             [javelin.core :as j]
-            [cljsjs.uikit]))
+            [cljsjs.uikit])
+  (:require-macros [uikit-hl.core :refer [defwidth]]))
 
 (def include-css #(hl/link :rel "stylesheet" :href "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/css/uikit.min.css"))
 
