@@ -43,21 +43,16 @@
                                     :uk-card-media-left   left}) kids)))
 
 (hl/defelem header [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-card-header true}) kids)))
+  (hl/div attr :class/uikit {:uk-card-header true} kids))
 
 (hl/defelem body [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-card-body true}) kids)))
+  (hl/div attr :class/uikit {:uk-card-body true} kids))
 
 (hl/defelem footer [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-card-footer true}) kids)))
+  (hl/div attr :class/uikit {:uk-card-footer true} kids))
 
 (hl/defelem badge [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-card-badge true}) kids)))
+  (hl/div attr :class/uikit {:uk-label true :uk-card-badge true} kids))
 
 (hl/defelem title [attr kids]
-  (let []
-    (hl/h3 (core/assoc-class attr {:uk-card-title true}) kids)))
+  (hl/h3  attr :class/uikit {:uk-card-title true} kids))
