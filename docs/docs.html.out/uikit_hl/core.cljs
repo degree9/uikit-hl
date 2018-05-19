@@ -17,9 +17,9 @@
 
 (defn select-class
   ([class clist]
-    (select-class {} class clist))
+   (select-class {} class clist))
   ([map class clist]
-    (reduce #(if-assoc (= %2 class) %1 %2 true %2 false) map clist)))
+   (reduce #(if-assoc (= %2 class) %1 %2 true %2 false) map clist)))
 
 (defmethod hl/do! :uikit/update
   [elem _ v]
