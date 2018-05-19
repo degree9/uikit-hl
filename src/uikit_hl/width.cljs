@@ -452,6 +452,11 @@
   (hoplon.core/do! elem :class/uikit
     {(keyword "uk-width-expand@xl") v}))
 
+(defmethod hoplon.core/do! :uk-child-width-1-1
+  [elem kw v]
+  (hoplon.core/do! elem :class/uikit
+    {(keyword "uk-child-width-1-1") v}))
+
 (defmethod hoplon.core/do! :uk-child-width-1-1-s
   [elem kw v]
   (hoplon.core/do! elem :class/uikit

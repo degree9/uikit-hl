@@ -1,78 +1,46 @@
 (ns uikit-hl.align
   (:require [hoplon.core :as hl]))
 
-(def ^:dynamic *align-left*    nil)
-(def ^:dynamic *align-left-s*  nil)
-(def ^:dynamic *align-left-m*  nil)
-(def ^:dynamic *align-left-l*  nil)
-(def ^:dynamic *align-left-xl* nil)
-
-(def ^:dynamic *align-right*    nil)
-(def ^:dynamic *align-right-s*  nil)
-(def ^:dynamic *align-right-m*  nil)
-(def ^:dynamic *align-right-l*  nil)
-(def ^:dynamic *align-right-xl* nil)
-
-(def ^:dynamic *align-center* nil)
-
-(defmethod hl/do! :uk-align
+(defmethod hl/do! :uk-align-left
   [elem _ v]
-  (->> v
-    (merge {:uk-align-left               *align-left*
-            (keyword "uk-align-left@s")  *align-left-s*
-            (keyword "uk-align-left@m")  *align-left-m*
-            (keyword "uk-align-left@l")  *align-left-l*
-            (keyword "uk-align-left@xl") *align-left-xl*
+  (hl/do! elem :class/uikit {:uk-align-left v}))
 
-            :uk-align-right               *align-right*
-            (keyword "uk-align-right@s")  *align-right-s*
-            (keyword "uk-align-right@m")  *align-right-m*
-            (keyword "uk-align-right@l")  *align-right-l*
-            (keyword "uk-align-right@xl") *align-right-xl*
-
-            :uk-align-center *align-center*})
-    (hl/do! elem :class)))
-
-(defmethod hl/do! :align-left
+(defmethod hl/do! :uk-align-left-s
   [elem _ v]
-  (hl/do! elem :uk-align {:uk-align-left v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-left@s") v}))
 
-(defmethod hl/do! :align-left-s
+(defmethod hl/do! :uk-align-left-m
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-left@s") v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-left@m") v}))
 
-(defmethod hl/do! :align-left-m
+(defmethod hl/do! :uk-align-left-l
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-left@m") v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-left@l") v}))
 
-(defmethod hl/do! :align-left-l
+(defmethod hl/do! :uk-align-left-xl
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-left@l") v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-left@xl") v}))
 
-(defmethod hl/do! :align-left-xl
+(defmethod hl/do! :uk-align-right
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-left@xl") v}))
+  (hl/do! elem :class/uikit {:uk-align-right v}))
 
-(defmethod hl/do! :align-right
+(defmethod hl/do! :uk-align-right-s
   [elem _ v]
-  (hl/do! elem :uk-align {:uk-align-right v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-right@s") v}))
 
-(defmethod hl/do! :align-right-s
+(defmethod hl/do! :uk-align-right-m
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-right@s") v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-right@m") v}))
 
-(defmethod hl/do! :align-right-m
+(defmethod hl/do! :uk-align-right-l
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-right@m") v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-right@l") v}))
 
-(defmethod hl/do! :align-right-l
+(defmethod hl/do! :uk-align-right-xl
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-right@l") v}))
+  (hl/do! elem :class/uikit {(keyword "uk-align-right@xl") v}))
 
-(defmethod hl/do! :align-right-xl
+(defmethod hl/do! :uk-align-center
   [elem _ v]
-  (hl/do! elem :uk-align {(keyword "uk-align-right@xl") v}))
-
-(defmethod hl/do! :align-center
-  [elem _ v]
-  (hl/do! elem :uk-align {:uk-align-center v}))
+  (hl/do! elem :class/uikit {:uk-align-center v}))

@@ -92,5 +92,9 @@
                                   :uk-text-baseline   baseline
                                   :uk-text-truncate   truncate
                                   :uk-text-break      break
-                                  :uk-text-nowrap     nowrap
-                                  }) kids)))
+                                  :uk-text-nowrap     nowrap})
+          kids)))
+
+(defmethod hoplon.core/do! :uk-text-center
+  [elem kw v]
+  (hoplon.core/do! elem :class/uikit {:uk-text-center v}))
