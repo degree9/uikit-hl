@@ -1,5 +1,6 @@
 (ns uikit-hl.modal
   (:require [hoplon.core :as hl]
+            ["uikit" :as uikit]
             [uikit-hl.core :as core]
             [uikit-hl.close :as close]))
 
@@ -11,7 +12,7 @@
 
 (defmethod hl/do! :uk-modal
   [elem _ v]
-  (.modal js/UIkit elem (clj->js v)))
+  (.modal uikit elem (clj->js v)))
 
 (hl/defelem modal [attr kids]
   (let [modal (:uk-modal attr *uk-modal*)

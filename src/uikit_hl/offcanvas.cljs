@@ -1,5 +1,5 @@
 (ns uikit-hl.offcanvas
-  (:require [cljsjs.uikit]
+  (:require ["uikit"]
             [hoplon.core :as hl]
             [uikit-hl.core :as core]))
 

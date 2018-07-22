@@ -1,7 +1,7 @@
 (ns uikit-hl.core
   (:require [hoplon.core :as hl]
             [javelin.core :as j]
-            [cljsjs.uikit]))
+            ["uikit"]))
 
 (def include-css #(hl/link :rel "stylesheet" :href "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/css/uikit.min.css"))
 

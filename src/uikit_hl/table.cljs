@@ -43,7 +43,7 @@
                               :uk-table-middle  middle
                               :uk-table-responsive responsive})
       kids
-      (hl/caption caption)
+      (hl/when-tpl caption (hl/caption caption))
       (hl/thead (hl/for-tpl [h headers] (hl/tr (hl/for-tpl [data (j/cell= h)] (hl/th data)))))
       (hl/tbody (hl/for-tpl [b body]    (hl/tr (hl/for-tpl [data (j/cell= b)] (hl/td data)))))
       (hl/tfoot (hl/for-tpl [f footers] (hl/tr (hl/for-tpl [data (j/cell= f)] (hl/td data))))))))
