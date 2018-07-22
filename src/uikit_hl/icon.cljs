@@ -1,7 +1,7 @@
 (ns uikit-hl.icon
   (:require [hoplon.core :as hl]
             [uikit-hl.core :as core]
-            [cljsjs.uikit-icons]))
+            ["uikit/dist/js/uikit-icons"]))
 
 (def ^:dynamic *uk-icon* "")
 (def ^:dynamic *icon*    nil)

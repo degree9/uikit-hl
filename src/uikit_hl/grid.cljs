@@ -1,5 +1,6 @@
 (ns uikit-hl.grid
   (:require [hoplon.core :as hl]
+            ["uikit" :as uikit]
             [uikit-hl.core :as core]
             [uikit-hl.card :as c]))
 
@@ -19,7 +20,7 @@
 
 (defmethod hl/do! :uk-grid
   [elem _ v]
-  (.grid js/UIkit elem (clj->js v)))
+  (.grid uikit elem (clj->js v)))
 
 (hl/defelem grid [attr kids]
   (let [grid         (:uk-grid      attr *uk-grid*)

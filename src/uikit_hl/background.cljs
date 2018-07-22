@@ -1,4 +1,4 @@
-(ns uikit-hl.animation
+(ns uikit-hl.background
   (:require [hoplon.core :as hl]))
 
 (def ^:dynamic *default*   nil)
@@ -28,9 +28,9 @@
             :uk-background-secondary *secondary*
 
             :uk-background-cover   *cover*
-            :uk-background-contain *contain*
-})
-    (hl/do! elem :class )))
+            :uk-background-contain *contain*})
+
+    (hl/do! elem :class)))
 
 (defmethod hl/do! :background-default
   [elem _ v]
