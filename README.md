@@ -1,8 +1,6 @@
 # uikit-hl
 
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/uikit-hl.svg)](https://clojars.org/degree9/uikit-hl)
-[![Dependencies Status](https://versions.deps.co/degree9/uikit-hl/status.svg)](https://versions.deps.co/degree9/uikit-hl)
-[![Downloads](https://versions.deps.co/degree9/uikit-hl/downloads.svg)](https://versions.deps.co/degree9/uikit-hl)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/uikit-hl.svg)](https://clojars.org/degree9/uikit-hl)<!--[![Dependencies Status](https://versions.deps.co/degree9/uikit-hl/status.svg)](https://versions.deps.co/degree9/uikit-hl)--> [![Downloads](https://versions.deps.co/degree9/uikit-hl/downloads.svg)](https://versions.deps.co/degree9/uikit-hl)
 <!---
 [![CircleCI](https://circleci.com/gh/degree9/uikit-hl.svg?style=svg)](https://circleci.com/gh/degree9/uikit-hl)
 --->
