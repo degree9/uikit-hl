@@ -1,6 +1,7 @@
 (ns uikit-hl.form
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            ["uikit" :as uikit]))
 
 (hl/defelem form [attr kids]
   (let [stacked    (:stacked    attr)
@@ -96,4 +97,4 @@
 
 (defmethod hl/do! :uk-form-custom
   [elem _ v]
-  (.formCustom js/UIKit elem (clj->js v)))
+  (.formCustom uikit elem (clj->js v)))

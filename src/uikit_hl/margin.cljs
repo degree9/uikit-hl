@@ -1,11 +1,12 @@
 (ns uikit-hl.margin
   (:require [hoplon.core :as hl]
             [hoplon.jquery]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            ["uikit" :as uikit]))
 
 (defmethod hl/do! :uk-margin
   [elem _ v]
-  (.margin js/UIkit elem (clj->js v)))
+  (.margin uikit elem (clj->js v)))
 
 (defmethod hoplon.core/do! :uk-margin-top
   [elem kw v]

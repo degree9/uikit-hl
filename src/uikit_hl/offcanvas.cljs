@@ -1,5 +1,5 @@
 (ns uikit-hl.offcanvas
-  (:require ["uikit"]
+  (:require ["uikit" :as uikit]
             [hoplon.core :as hl]
             [uikit-hl.core :as core]))
 
@@ -7,7 +7,7 @@
 
 (defmethod hl/do! :uk-offcanvas
   [elem _ v]
-  (.offcanvas js/UIkit elem (clj->js v)))
+  (.offcanvas uikit elem (clj->js v)))
 
 (hl/defelem content [attr kids]
   (hl/div
