@@ -1,48 +1,41 @@
 (ns uikit-hl.grid
-  (:require [hoplon.core :as hl]
-            ["uikit" :as uikit]
-            [uikit-hl.core :as core]
-            [uikit-hl.card :as c]))
+  (:require [hoplon.core :as h]
+            [clojure.string :as s]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-grid* "")
+(defmulti uk-grid! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *small*    nil)
-(def ^:dynamic *medium*   nil)
-(def ^:dynamic *large*    nil)
-(def ^:dynamic *collapse* nil)
+(defn format-grid [grid]
+  (str "uk-grid-" grid))
 
-(def ^:dynamic *divider* nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-grid! elem key val))
 
-(def ^:dynamic *match* nil)
-(def ^:dynamic *stack* nil)
+(defmethod uk-grid! ::default
+  [elem key val]
+  (elem :class {(format-grid (name key)) val}))
 
-(def ^:dynamic *item-match* nil)
-
-(defmethod hl/do! :uk-grid
+(defmethod uk-grid! ::grid
   [elem _ v]
-  (.grid uikit elem (clj->js v)))
+  (.grid uk/uikit elem (clj->js v)))
 
-(hl/defelem grid [attr kids]
-  (let [grid         (:uk-grid      attr *uk-grid*)
-        small        (:small        attr *small*)
-        medium       (:grid         attr *medium*)
-        large        (:large        attr *large*)
-        collapse     (:collapse     attr *collapse*)
-        divider      (:divider      attr *divider*)
-        match        (:match        attr *match*)
-        stack        (:stack        attr *stack*)
-        attr     (-> attr
-                    (assoc :uk-grid grid)
-                    (dissoc :small :medium :large :collapse :divider :match :stack))]
-    (hl/div (core/assoc-class attr {:uk-grid-small         small
-                                    :uk-grid-medium        medium
-                                    :uk-grid-large         large
-                                    :uk-grid-collapse      collapse
-                                    :uk-grid-divider       divider
-                                    :uk-grid-match         match
-                                    :uk-grid-stack         stack}) kids)))
+(h/defelem grid [{:keys [grid small medium large collapse divider match stack] :or {grid {}} :as attr} kids]
+  (h/div
+    (dissoc attr :grid :small :medium :large :collapse :divider :match :stack)
+    ::grid     grid
+    ::small    small
+    ::medium   medium
+    ::large    large
+    ::collapse collapse
+    ::divider  divider
+    ::match    match
+    ::stack    stack
+    kids))
 
-(hl/defelem cell [attr kids]
-  (let [item-match (:item-match attr *item-match*)
-        attr       (dissoc attr :item-match)]
-    (hl/div (core/assoc-class attr {:uk-grid-item-match item-match}) kids)))
+(h/defelem cell [attr kids]
+  (let [{:keys [item-match]} (dissoc attr :item-match)]
+    (h/div
+      attr
+      ::item-match item-match
+      kids)))

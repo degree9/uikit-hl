@@ -1,7 +1,16 @@
 (ns uikit-hl.core
-  (:require [hoplon.core :as hl]
+  (:require ["uikit" :as uk]
             [javelin.core :as j]
-            ["uikit"]))
+            [hoplon.core :as hl]
+            [hoplon.jquery]))
+
+
+(def uikit uk)
+
+;(defmethod h/do! :uikit/*
+;  [elem kw v]
+;  (let [kw (clojure.string/replace kw #"$")]
+;    (elem :class {(keyword "uk-width-1-1@s") v}))
 
 (def include-css #(hl/link :rel "stylesheet" :href "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/css/uikit.min.css"))
 

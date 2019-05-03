@@ -1,45 +1,45 @@
 (ns uikit-hl.tab
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(defmethod hl/do! :uk-tab
+(defmulti uk-tab! h/kw-dispatcher :default ::default)
+
+(defn format-tab [grid]
+  (str "uk-tab-" grid))
+
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-tab! elem key val))
+
+(defmethod uk-tab! ::default
+  [elem key val]
+  (h/do! elem :class {(format-tab (name key)) val}))
+
+(defmethod uk-tab! ::tab
   [elem _ v]
-  (.tab uikit elem (clj->js v)))
+  (.tab uk/uikit elem (clj->js v)))
 
-(defmethod hl/do! :uk-tab-left
+(defmethod uk-tab! ::active
   [elem _ v]
-  (hl/do! elem :class {:uk-tab-left v}))
+  (h/do! elem :class {:uk-active v}))
 
-(defmethod hl/do! :uk-tab-right
+(defmethod uk-tab! ::disabled
   [elem _ v]
-  (hl/do! elem :class {:uk-tab-right v}))
+  (h/do! elem :class {:uk-disabled v}))
 
-(defmethod hl/do! :uk-tab-bottom
-  [elem _ v]
-  (hl/do! elem :class {:uk-tab-bottom v}))
-
-(defmethod hl/do! :uk-active
-  [elem _ v]
-  (hl/do! elem :class {:uk-active v}))
-
-(defmethod hl/do! :uk-disabled
-  [elem _ v]
-  (hl/do! elem :class {:uk-disabled v}))
-
-(hl/defelem tab [{:keys [uk-tab left right bottom] :as attr} kids]
-  (hl/ul
+(h/defelem tab [{:keys [uk-tab left right bottom] :as attr} kids]
+  (h/ul
     (dissoc attr :bottom :left :right :uk-tab)
-    :uk-tab        uk-tab
-    :uk-tab-left   left
-    :uk-tab-right  right
-    :uk-tab-bottom bottom
+    ::tab    uk-tab
+    ::left   left
+    ::right  right
+    ::bottom bottom
     kids))
 
-(hl/defelem item [{:keys [active disabled] :as attr} kids]
-  (hl/li
-    (hl/a
+(h/defelem item [{:keys [active disabled] :as attr} kids]
+  (h/li
+    (h/a
       (dissoc attr :active :disabled)
-      :uk-active   active
-      :uk-disabled disabled
+      ::active   active
+      ::disabled disabled
       kids)))

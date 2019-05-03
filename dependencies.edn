@@ -1,4 +1,4 @@
-[[org.clojure/clojure        "1.8.0"]
- [org.clojure/clojurescript  "1.9.542"]
+[[org.clojure/clojure        "1.10.0"]
+ [org.clojure/clojurescript  "1.10.516"]
  [degree9/boot-semver        "1.7.0" :scope "test"]
- [hoplon/hoplon              "7.0.2"]]
+ [hoplon/hoplon              "7.2.0"]]
