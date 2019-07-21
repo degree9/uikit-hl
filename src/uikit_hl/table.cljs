@@ -35,9 +35,21 @@
     kids))
 
 (def header  h/thead)
+(def thead   h/thead)
+
 (def body    h/tbody)
+(def tbody   h/tbody)
+
 (def footer  h/tfoot)
+(def tfoot   h/tfoot)
+
 (def row     h/tr)
+(def tr      h/tr)
+
 (def hcell   h/th)
+(def th      h/th)
+
 (def cell    h/td)
+(def td      h/td)
+
 (def caption h/caption)
