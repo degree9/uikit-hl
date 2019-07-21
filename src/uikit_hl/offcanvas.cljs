@@ -1,25 +1,40 @@
 (ns uikit-hl.offcanvas
-  (:require ["uikit" :as uikit]
-            [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-offcanvas* "")
+(defmulti uk-offcanvas! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-offcanvas
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-offcanvas! elem key val))
+
+(defn- format-offcanvas [offcanvas]
+  (str "uk-offcanvas-" offcanvas))
+
+(defmethod uk-offcanvas! ::default
+  [elem kw v]
+  (elem :class {(format-offcanvas (name kw)) v}))
+
+(defmethod uk-offcanvas! ::offcanvas
   [elem _ v]
-  (.offcanvas uikit elem (clj->js v)))
+  (.offcanvas uk/uikit elem (clj->js v)))
 
-(hl/defelem content [attr kids]
-  (hl/div
-    (core/assoc-class attr {:uk-offcanvas-content true})
+;;;;
+
+(h/defelem content [attr kids]
+  (h/div
+    attr
+    ::content true
     kids))
 
-(hl/defelem offcanvas [attr kids]
-  (let [offcanvas (:uk-offcanvas attr *uk-offcanvas*)
-        attr (assoc attr :uk-offcanvas offcanvas)]
-    (hl/div attr kids)))
+(h/defelem offcanvas [attr kids]
+  (h/div
+    attr
+    ::offcanvas {}
+    kids))
 
-(hl/defelem bar [attr kids]
-  (hl/div
-    (core/assoc-class attr {:uk-offcanvas-bar true})
+(h/defelem bar [attr kids]
+  (h/div
+    attr
+    ::bar true
     kids))

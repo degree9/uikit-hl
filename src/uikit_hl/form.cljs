@@ -3,12 +3,18 @@
   (:require [hoplon.core :as h]
             [uikit-hl.core :as uk]))
 
+(defmulti uk-form! h/kw-dispatcher :default ::default)
+
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-form! elem key val))
+
 (defn- format-form [form]
   (str "uk-form-" form))
 
-(defmethod h/do! ::default
+(defmethod uk-form! ::default
   [elem kw v]
-  (h/do! elem :class {(format-form (name kw)) v}))
+  (elem :class {(format-form (name kw)) v}))
 
 (h/defelem form [{:keys [stacked horizontal] :as attr} kids]
   (h/form
@@ -30,9 +36,9 @@
     ::label true
     kids))
 
-(defmethod h/do! ::input
+(defmethod uk-form! ::input
   [elem kw v]
-  (h/do! elem :class {:uk-input v}))
+  (elem :class {:uk-input v}))
 
 (h/defelem input [attr kids]
   (h/input
@@ -40,9 +46,9 @@
     ::input true
     kids))
 
-(defmethod h/do! ::textarea
+(defmethod uk-form! ::textarea
   [elem kw v]
-  (h/do! elem :class {:uk-textarea v}))
+  (elem :class {:uk-textarea v}))
 
 (h/defelem textarea [attr kids]
   (h/textarea
@@ -50,9 +56,9 @@
     ::textarea true
     kids))
 
-(defmethod h/do! ::fieldset
+(defmethod uk-form! ::fieldset
   [elem kw v]
-  (h/do! elem :class {:uk-fieldset v}))
+  (elem :class {:uk-fieldset v}))
 
 (h/defelem fieldset [attr kids]
   (h/fieldset
@@ -60,9 +66,9 @@
     ::fieldset true
     kids))
 
-(defmethod h/do! ::legend
+(defmethod uk-form! ::legend
   [elem kw v]
-  (h/do! elem :class {:uk-legend v}))
+  (elem :class {:uk-legend v}))
 
 (h/defelem legend [attr kids]
   (h/legend
@@ -70,9 +76,9 @@
     ::legend true
     kids))
 
-(defmethod h/do! ::checkbox
+(defmethod uk-form! ::checkbox
   [elem kw v]
-  (h/do! elem :class {:uk-checkbox v}))
+  (elem :class {:uk-checkbox v}))
 
 (h/defelem checkbox [attr kids]
   (h/label
@@ -82,9 +88,9 @@
       ::checkbox true)
     kids))
 
-(defmethod h/do! ::range
+(defmethod uk-form! ::range
   [elem kw v]
-  (h/do! elem :class {:uk-range v}))
+  (elem :class {:uk-range v}))
 
 (h/defelem range [attr kids]
   (h/label
@@ -94,9 +100,9 @@
       ::range true)
     kids))
 
-(defmethod h/do! ::radio
+(defmethod uk-form! ::radio
   [elem kw v]
-  (h/do! elem :class {:uk-radio v}))
+  (elem :class {:uk-radio v}))
 
 (h/defelem radio [attr kids]
   (h/label
@@ -106,9 +112,9 @@
       ::radio true)
     kids))
 
-(defmethod h/do! ::select
+(defmethod uk-form! ::select
   [elem kw v]
-  (h/do! elem :class {:uk-select v}))
+  (elem :class {:uk-select v}))
 
 (h/defelem select [attr kids]
   (h/select
@@ -118,6 +124,6 @@
 
 (def option h/option)
 
-(defmethod h/do! ::custom
+(defmethod uk-form! ::custom
   [elem _ v]
   (.formCustom uk/uikit elem (clj->js v)))
