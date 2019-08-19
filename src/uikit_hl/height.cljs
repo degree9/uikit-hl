@@ -35,7 +35,7 @@
 
 (defmethod uk-height! ::match
   [elem _ v]
-  (hoplon.core/do! elem :uk-height-match
+  (h/do! elem :uk-height-match
     (cond
       (map? v) (.stringify js/JSON (clj->js v))
       (string? v) v)))
