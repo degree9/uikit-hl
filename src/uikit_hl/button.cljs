@@ -1,64 +1,56 @@
 (ns uikit-hl.button
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [clojure.string :as s]
+            [hoplon.core :as h]
+            [hoplon.jquery]))
 
-(def ^:dynamic *default*   nil)
-(def ^:dynamic *primary*   nil)
-(def ^:dynamic *secondary* nil)
-(def ^:dynamic *danger*    nil)
-(def ^:dynamic *text*      nil)
-(def ^:dynamic *link*      nil)
+(defmulti uk-button! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *small*     nil)
-(def ^:dynamic *large*     nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-button! elem key val))
 
-(hl/defelem button [attr kids]
-  (let [default   (:default   attr *default*)
-        primary   (:primary   attr *primary*)
-        secondary (:secondary attr *secondary*)
-        danger    (:danger    attr *danger*)
-        text      (:text      attr *text*)
-        link      (:link      attr *link*)
-        small     (:small     attr *small*)
-        large     (:large     attr *large*)
-        attr      (dissoc     attr :default :primary :secondary :danger :text
-                                   :link :small :large)]
-    (hl/button
-      (core/assoc-class attr
-        {:uk-button           true
-         :uk-button-default   default
-         :uk-button-primary   primary
-         :uk-button-secondary secondary
-         :uk-button-danger    danger
-         :uk-button-text      text
-         :uk-button-link      link
-         :uk-button-small     small
-         :uk-button-large     large})
+(defn- format-button [button]
+  (str "uk-button-" button))
+
+(defmethod uk-button! ::default
+  [elem kw v]
+  (elem :class {(format-button (name kw)) v}))
+
+(defmethod uk-button! ::button
+  [elem kw v]
+  (h/do! elem :class {:uk-button (clj->js v)}))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(h/defelem button [{:keys [default primary secondary danger text link small large] :as attr} kids]
+  (let [attr (dissoc attr :default :primary :secondary :danger :text :link :small :large)]
+    (h/button
+      attr
+      ::button    true
+      ::default   default
+      ::primary   primary
+      ::secondary secondary
+      ::danger    danger
+      ::text      text
+      ::link      link
+      ::small     small
+      ::large     large
       kids)))
 
-(hl/defelem a-button [attr kids]
-  (let [default   (:default   attr *default*)
-        primary   (:primary   attr *primary*)
-        secondary (:secondary attr *secondary*)
-        danger    (:danger    attr *danger*)
-        text      (:text      attr *text*)
-        link      (:link      attr *link*)
-        small     (:small     attr *small*)
-        large     (:large     attr *large*)
-        attr      (dissoc     attr :default :primary :secondary :danger :text
-                                   :link :small :large)]
-    (hl/a
-      (core/assoc-class attr
-        {:uk-button           true
-         :uk-button-default   default
-         :uk-button-primary   primary
-         :uk-button-secondary secondary
-         :uk-button-danger    danger
-         :uk-button-text      text
-         :uk-button-link      link
-         :uk-button-small     small
-         :uk-button-large     large})
+(h/defelem a-button [{:keys [default primary secondary danger text link small large] :as attr} kids]
+  (let [attr (dissoc attr :default :primary :secondary :danger :text :link :small :large)]
+    (h/a
+      attr
+      ::button    true
+      ::default   default
+      ::primary   primary
+      ::secondary secondary
+      ::danger    danger
+      ::text      text
+      ::link      link
+      ::small     small
+      ::large     large
       kids)))
 
-(hl/defelem group [attr kids]
-  (hl/div (core/assoc-class attr {:uk-button-group true}) kids))
+(h/defelem group [attr kids]
+  (h/div attr ::group true kids))
