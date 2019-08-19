@@ -16,6 +16,10 @@
   [elem kw v]
   (elem :class {(format-height (name kw)) v}))
 
+(defmethod uk-height! ::full
+  [elem _ v]
+  (h/do! elem :class {:uk-height-1-1 v}))
+
 ;; UIKit Height Viewport ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmethod uk-height! ::viewport
