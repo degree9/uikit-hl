@@ -1,6 +1,7 @@
 (ns uikit-hl.navbar
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            ["uikit" :as uikit]))
 
 (def ^:dynamic *uk-navbar*   "")
 (def ^:dynamic *transparent* nil)
@@ -13,7 +14,11 @@
 
 (defmethod hl/do! :uk-navbar
   [elem _ v]
-  (.navbar js/UIkit elem (clj->js v)))
+  (.navbar uikit elem (clj->js v)))
+
+(defmethod hl/do! :uk-navbar-dropdown-nav
+  [elem _ v]
+  (hl/do! elem :class {:uk-navbar-dropdown-nav v}))
 
 (hl/defelem navbar [attr kids]
   (let [navbar      (:uk-navbar attr *uk-navbar*)
@@ -80,3 +85,7 @@
 (hl/defelem dropbar [attr kids]
   (let []
     (hl/div (core/assoc-class attr {:uk-navbar-dropbar true}) kids)))
+
+(hl/defelem dropdown [attr kids]
+  (let []
+    (hl/div (core/assoc-class attr {:uk-navbar-dropdown true}) kids)))

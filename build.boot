@@ -4,24 +4,13 @@
 (set-env! :dependencies (get-deps))
 
 (require
- '[adzerk.boot-cljs :refer :all]
- '[degree9.boot-semver :refer :all]
- '[hoplon.boot-hoplon :refer :all])
+ '[degree9.boot-semver :refer :all])
 
 (task-options!
  pom    {:project 'degree9/uikit-hl
          :description "UIKit Components for Hoplon."
          :url "https://github.com/degree9/uikit-hl"
          :scm {:url "https://github.com/degree9/uikit-hl"}})
-
-(deftask docs
-  "Build project documentation."
-  []
-  (merge-env! :source-paths #{"src"} :asset-paths #{"assets"})
-  (comp
-    (hoplon)
-    (cljs)
-    (target :dir #{"docs"})))
 
 (deftask deploy
   "Build project for deployment to clojars."
@@ -30,15 +19,6 @@
     (version)
     (build-jar)
     (push-release)))
-
-(deftask deploy-snapshot
-  "Build project for pre-release to clojars."
-  []
-  (comp
-    (version :develop true
-             :pre-release 'snapshot)
-    (build-jar)
-    (push-snapshot)))
 
 (deftask develop
   "Build project for development."

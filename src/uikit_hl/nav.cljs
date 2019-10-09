@@ -1,6 +1,7 @@
 (ns uikit-hl.nav
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            ["uikit" :as uikit]))
 
 (def ^:dynamic *uk-nav*      "")
 (def ^:dynamic *default*     nil)
@@ -12,7 +13,7 @@
 
 (defmethod hl/do! :uk-nav
   [elem _ v]
-  (.nav js/UIkit elem (clj->js v)))
+  (.nav uikit elem (clj->js v)))
 
 
 (hl/defelem nav [attr kids]
@@ -33,10 +34,8 @@
 (hl/defelem item [attr kids]
   (let [parent (:parent attr *parent*)
         active (:active attr *active*)
-        title  (:title  attr *title*)
-        href   (:href   attr *href*)
-        attr   (dissoc  attr :active :title :parent :href)]
-    (hl/li (core/assoc-class attr {:uk-parent parent :uk-active active}) [(hl/a :href href title) kids])))
+        attr   (dissoc  attr :active :parent)]
+    (hl/li (core/assoc-class attr {:uk-parent parent :uk-active active}) kids)))
 
 (hl/defelem subnav [attr kids]
   (let []

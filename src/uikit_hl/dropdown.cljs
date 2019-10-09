@@ -1,19 +1,21 @@
 (ns uikit-hl.dropdown
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            ["uikit" :as uikit]))
 
 (def ^:dynamic *uk-dropdown* "")
 
-(def ^:dynamic *navbar* nil)
-
 (defmethod hl/do! :uk-dropdown
   [elem _ v]
-  (.dropdown js/UIkit elem (clj->js v)))
+  (.dropdown uikit elem (clj->js v)))
+
+(defmethod hl/do! :uk-dropdown-grid
+  [elem _ v]
+  (hl/do! elem :class {:uk-dropdown-grid v}))
+
+(defmethod hl/do! :uk-dropdown-nav
+  [elem _ v]
+  (hl/do! elem :class {:uk-dropdown-nav v}))
 
 (hl/defelem dropdown [attr kids]
-  (let [dropdown (:uk-dropdown attr *uk-dropdown*)
-        navbar   (:navbar attr *navbar*)
-        attr     (-> attr
-                  (assoc :uk-dropdown dropdown)
-                  (dissoc :navbar))]
-    (hl/div (core/assoc-class attr {:uk-navbar-dropdown navbar}) kids)))
+  (let [dropdown (:uk-dropdown attr *uk-dropdown*)]
+    (hl/div {:uk-dropdown dropdown} attr kids)))

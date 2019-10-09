@@ -1,7 +1,12 @@
 (ns uikit-hl.icon
   (:require [hoplon.core :as hl]
             [uikit-hl.core :as core]
-            ["uikit/dist/js/uikit-icons"]))
+            ["uikit" :as uikit]
+            ["uikit/dist/js/uikit-icons" :as icons]))
+
+;; Init UIKit Icons ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(icons uikit)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def ^:dynamic *uk-icon* "")
 (def ^:dynamic *icon*    nil)
@@ -9,7 +14,7 @@
 
 (defmethod hl/do! :uk-icon
   [elem _ v]
-  (.icon js/UIkit elem (clj->js v)))
+  (.icon uikit elem (clj->js v)))
 
 (hl/defelem icon [attr kids]
   (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))

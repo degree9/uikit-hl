@@ -1,13 +1,14 @@
 (ns uikit-hl.accordion
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            ["uikit" :as uikit]))
 
 (def ^:dynamic *uk-accordion* "")
 (def ^:dynamic *title* "")
 
 (defmethod hl/do! :uk-accordion
   [elem _ v]
-  (.accordion js/UIkit elem (clj->js v)))
+  (.accordion uikit elem (clj->js v)))
 
 (hl/defelem accordion [attr kids]
   (let [accordion (:uk-accordion attr *uk-accordion*)

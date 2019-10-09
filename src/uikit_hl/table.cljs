@@ -1,49 +1,55 @@
 (ns uikit-hl.table
-  (:require [hoplon.core :as hl]
+  (:require [hoplon.core :as h]
             [javelin.core :as j]
             [uikit-hl.core :as core]))
 
-(def ^:dynamic *data* nil)
+(defmulti uk-table! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *caption* nil)
-(def ^:dynamic *headers* nil)
-(def ^:dynamic *footers* nil)
+(defn format-table [grid]
+  (str "uk-table-" grid))
 
-(def ^:dynamic *divider* nil)
-(def ^:dynamic *striped* nil)
-(def ^:dynamic *hover*   nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-table! elem key val))
 
-(def ^:dynamic *small*   nil)
-(def ^:dynamic *justify* nil)
-(def ^:dynamic *middle*  nil)
+(defmethod uk-table! ::default
+  [elem key val]
+  (h/do! elem :class {(format-table (name key)) val}))
 
-(def ^:dynamic *responsive*  nil)
+(defmethod uk-table! ::table
+  [elem _ v]
+  (h/do! elem :class {:uk-table val}))
 
-(hl/defelem table [attr kids]
-  (let [caption (:caption attr *caption*)
-        headers (:headers attr *headers*)
-        body    (:data    attr (or *data* kids))
-        footers (:footers attr *footers*)
-        divider (:divider attr *divider*)
-        striped (:striped attr *striped*)
-        hover   (:hover   attr *hover*)
-        small   (:small   attr *small*)
-        justify (:justify attr *justify*)
-        middle  (:middle  attr *middle*)
-        responsive (:responsive attr *responsive*)
-        attr (dissoc attr :caption :headers :data :footers :divider :striped
-                          :hover :small :justify :middle)]
-    (hl/table
-      (core/assoc-class attr {:uk-table true
-                              :uk-table-divider divider
-                              :uk-table-striped striped
-                              :uk-table-hover   hover
-                              :uk-table-small   small
-                              :uk-table-justify justify
-                              :uk-table-middle  middle
-                              :uk-table-responsive responsive})
-      kids
-      (hl/when-tpl caption (hl/caption caption))
-      (hl/thead (hl/for-tpl [h headers] (hl/tr (hl/for-tpl [data (j/cell= h)] (hl/th data)))))
-      (hl/tbody (hl/for-tpl [b body]    (hl/tr (hl/for-tpl [data (j/cell= b)] (hl/td data)))))
-      (hl/tfoot (hl/for-tpl [f footers] (hl/tr (hl/for-tpl [data (j/cell= f)] (hl/td data))))))))
+(h/defelem table
+  [{:keys [caption headers body footers divider striped hover small justify middle responsive] :as attr} kids]
+  (h/table
+    (dissoc attr :caption :divider :striped :hover :small :justify :middle :responsive)
+    ::table      true
+    ::divider    divider
+    ::striped    striped
+    ::hover      hover
+    ::small      small
+    ::justify    justify
+    ::middle     middle
+    ::responsive responsive
+    kids))
+
+(def header  h/thead)
+(def thead   h/thead)
+
+(def body    h/tbody)
+(def tbody   h/tbody)
+
+(def footer  h/tfoot)
+(def tfoot   h/tfoot)
+
+(def row     h/tr)
+(def tr      h/tr)
+
+(def hcell   h/th)
+(def th      h/th)
+
+(def cell    h/td)
+(def td      h/td)
+
+(def caption h/caption)

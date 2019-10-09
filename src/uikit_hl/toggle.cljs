@@ -1,9 +1,13 @@
 (ns uikit-hl.toggle
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-toggle* "")
+(defmulti uk-toggle! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-toggle
-  [elem _ v]
-  (.toggle js/UIkit elem (clj->js v)))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-toggle! elem key val))
+
+(defmethod uk-toggle! ::default
+  [elem key val]
+  (.toggle uk/uikit elem (clj->js val)))  

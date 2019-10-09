@@ -1,22 +1,41 @@
 (ns uikit-hl.search
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(defmethod hl/do! :uk-search
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-search v}))
+(defmulti uk-search! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-search-large
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-search-large v}))
+(defn format-search [search]
+  (str "uk-search-" search))
 
-(defmethod hl/do! :uk-search-input
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-search-input v}))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-search! elem key val))
 
-(hl/defelem search [attr kids]
-  (let [large (:large attr)]
-    (hl/form attr :uk-search true :uk-search-large large kids)))
+(defmethod uk-search! ::default
+  [elem key val]
+  (h/do! elem :class {(format-search (name key)) val}))
 
-(hl/defelem input [attr kids]
-  (hl/input attr :uk-search-input true :type "search" kids))
+(defmethod uk-search! ::search
+  [elem key val]
+  (h/do! elem :class {:uk-search val}))
+
+(h/defelem search [{:keys [large navbar] :as attr} kids]
+  (h/form
+    (dissoc attr :large)
+    ::search true
+    ::large  large
+    ::navbar navbar
+    kids))
+
+(h/defelem input [attr kids]
+  (h/input
+    attr
+    ::input true
+    :type "search"
+    kids))
+
+(h/defelem icon [attr kids]
+  (h/span
+    attr
+    :uk-search-icon true
+    kids))

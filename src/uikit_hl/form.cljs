@@ -1,99 +1,129 @@
 (ns uikit-hl.form
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:refer-clojure :exclude [range])
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(hl/defelem form [attr kids]
-  (let [stacked    (:stacked    attr)
-        horizontal (:horizontal attr)]
-    (hl/form
+(defmulti uk-form! h/kw-dispatcher :default ::default)
+
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-form! elem key val))
+
+(defn- format-form [form]
+  (str "uk-form-" form))
+
+(defmethod uk-form! ::default
+  [elem kw v]
+  (elem :class {(format-form (name kw)) v}))
+
+(h/defelem form [{:keys [stacked horizontal] :as attr} kids]
+  (h/form
+    (dissoc attr :stacked :horizontal)
+    ::stacked stacked
+    ::horizontal horizontal
+    kids))
+
+(h/defelem icon [{:keys [flip] :as attr} kids]
+  (h/span
+    (dissoc attr :flip)
+    ::icon true
+    ::icon-flip flip
+    kids))
+
+(h/defelem label [attr kids]
+  (h/label
+    attr
+    ::label true
+    kids))
+
+(defmethod uk-form! ::input
+  [elem kw v]
+  (elem :class {:uk-input v}))
+
+(h/defelem input [attr kids]
+  (h/input
+    attr
+    ::input true
+    kids))
+
+(defmethod uk-form! ::textarea
+  [elem kw v]
+  (elem :class {:uk-textarea v}))
+
+(h/defelem textarea [attr kids]
+  (h/textarea
+    attr
+    ::textarea true
+    kids))
+
+(defmethod uk-form! ::fieldset
+  [elem kw v]
+  (elem :class {:uk-fieldset v}))
+
+(h/defelem fieldset [attr kids]
+  (h/fieldset
+    attr
+    ::fieldset true
+    kids))
+
+(defmethod uk-form! ::legend
+  [elem kw v]
+  (elem :class {:uk-legend v}))
+
+(h/defelem legend [attr kids]
+  (h/legend
+    attr
+    ::legend true
+    kids))
+
+(defmethod uk-form! ::checkbox
+  [elem kw v]
+  (elem :class {:uk-checkbox v}))
+
+(h/defelem checkbox [attr kids]
+  (h/label
+    (h/input
       attr
-      :uk-form-stacked stacked
-      :uk-form-horizontal horizontal
-      kids)))
+      :type "checkbox"
+      ::checkbox true)
+    kids))
 
-(hl/defelem icon [attr kids]
-  (let [flip (:flip attr)]
-    (hl/span
+(defmethod uk-form! ::range
+  [elem kw v]
+  (elem :class {:uk-range v}))
+
+(h/defelem range [attr kids]
+  (h/label
+    (h/input
       attr
-      :uk-form-icon true
-      :uk-form-icon-flip flip
-      kids)))
+      :type "range"
+      ::range true)
+    kids))
 
-(hl/defelem input [attr kids]
-  (hl/input attr :class/uikit {:uk-input true} kids))
+(defmethod uk-form! ::radio
+  [elem kw v]
+  (elem :class {:uk-radio v}))
 
-(hl/defelem fieldset [attr kids]
-  (hl/fieldset attr :class/uikit {:uk-fieldset true} kids))
+(h/defelem radio [attr kids]
+  (h/label
+    (h/input
+      attr
+      :type "radio"
+      ::radio true)
+    kids))
 
-(hl/defelem legend [attr kids]
-  (hl/legend attr :class/uikit {:uk-legend true} kids))
+(defmethod uk-form! ::select
+  [elem kw v]
+  (elem :class {:uk-select v}))
 
-(hl/defelem checkbox [attr kids]
-  (hl/label [(hl/input :class/uikit {:uk-checkbox true}) " " kids]))
+(h/defelem select [attr kids]
+  (h/select
+    attr
+    ::select true
+    kids))
 
-(hl/defelem radio [attr kids]
-  (hl/label [(hl/input attr :class/uikit {:uk-radio true}) " " kids]))
+(def option h/option)
 
-(defmethod hl/do! :uk-form-danger
+(defmethod uk-form! ::custom
   [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-danger v}))
-
-(defmethod hl/do! :uk-form-success
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-success v}))
-
-(defmethod hl/do! :uk-form-small
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-small v}))
-
-(defmethod hl/do! :uk-form-large
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-large v}))
-
-(defmethod hl/do! :uk-form-width-xsmall
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-width-xsmall v}))
-
-(defmethod hl/do! :uk-form-width-small
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-width-small v}))
-
-(defmethod hl/do! :uk-form-width-medium
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-width-medium v}))
-
-(defmethod hl/do! :uk-form-width-large
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-width-large v}))
-
-(defmethod hl/do! :uk-form-blank
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-blank v}))
-
-(defmethod hl/do! :uk-form-stacked
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-stacked v}))
-
-(defmethod hl/do! :uk-form-horizontal
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-horizontal v}))
-
-(defmethod hl/do! :uk-form-label
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-horizontal v}))
-
-(defmethod hl/do! :uk-form-controls
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-controls v}))
-
-(defmethod hl/do! :uk-form-icon
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-icon v}))
-
-(defmethod hl/do! :uk-form-icon-flip
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-form-icon-flip v}))
-
-(defmethod hl/do! :uk-form-custom
-  [elem _ v]
-  (.formCustom js/UIKit elem (clj->js v)))
+  (.formCustom uk/uikit elem (clj->js v)))

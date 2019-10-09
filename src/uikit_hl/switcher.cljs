@@ -1,6 +1,7 @@
 (ns uikit-hl.switcher
   (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+            [uikit-hl.core :as core]
+            ["uikit" :as uikit]))
 
 (def ^:dynamic *uk-switcher* "")
 (def ^:dynamic *bottom* nil)
@@ -10,7 +11,7 @@
 
 (defmethod hl/do! :uk-switcher
   [elem _ v]
-  (.switcher js/UIkit elem (clj->js v)))
+  (.switcher uikit elem (clj->js v)))
 
 (hl/defelem switcher [attr kids]
   (let []

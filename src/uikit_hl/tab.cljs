@@ -1,35 +1,45 @@
 (ns uikit-hl.tab
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-tab* "")
-(def ^:dynamic *bottom* nil)
+(defmulti uk-tab! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *active*   nil)
-(def ^:dynamic *disabled* nil)
+(defn format-tab [grid]
+  (str "uk-tab-" grid))
 
-(def ^:dynamic *title* nil)
-(def ^:dynamic *href* nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-tab! elem key val))
 
-(defmethod hl/do! :uk-tab
+(defmethod uk-tab! ::default
+  [elem key val]
+  (h/do! elem :class {(format-tab (name key)) val}))
+
+(defmethod uk-tab! ::tab
   [elem _ v]
-  (.tab js/UIkit elem (clj->js v)))
+  (.tab uk/uikit elem (clj->js v)))
 
+(defmethod uk-tab! ::active
+  [elem _ v]
+  (h/do! elem :class {:uk-active v}))
 
-(hl/defelem tab [attr kids]
-  (let [tab    (:uk-tab attr *uk-tab*)
-        bottom (:bottom attr *bottom*)
-        attr   (-> attr
-                (assoc  :uk-tab tab)
-                (dissoc :bottom))]
-    (hl/ul (core/assoc-class attr {:uk-tab        true
-                                   :uk-tab-bottom bottom}) kids)))
+(defmethod uk-tab! ::disabled
+  [elem _ v]
+  (h/do! elem :class {:uk-disabled v}))
 
-(hl/defelem item [attr kids]
-  (let [active   (:active   attr *active*)
-        disabled (:disabled attr *disabled*)
-        title    (:title    attr *title*)
-        href     (:href     attr *href*)
-        attr     (dissoc    attr :active :disabled :title :href)]
-    (hl/li (core/assoc-class attr {:active   active
-                                   :disabled disabled}) [(hl/a :href href title) kids])))
+(h/defelem tab [{:keys [uk-tab left right bottom] :as attr} kids]
+  (h/ul
+    (dissoc attr :bottom :left :right :uk-tab)
+    ::tab    uk-tab
+    ::left   left
+    ::right  right
+    ::bottom bottom
+    kids))
+
+(h/defelem item [{:keys [active disabled] :as attr} kids]
+  (h/li
+    (h/a
+      (dissoc attr :active :disabled)
+      ::active   active
+      ::disabled disabled
+      kids)))
