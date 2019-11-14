@@ -14,7 +14,7 @@
 
 (defmethod uk-grid! ::default
   [elem key val]
-  (elem :class {(format-grid (name key)) val}))
+  (h/do! elem :class {(format-grid (name key)) val}))
 
 (defmethod uk-grid! ::grid
   [elem _ v]
