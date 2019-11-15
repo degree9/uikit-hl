@@ -1,11 +1,9 @@
 (ns uikit-hl.subnav
-  (:require [clojure.string :as s]
-            [hoplon.core :as h]
+  (:require [hoplon.core :as h]
             [hoplon.jquery]))
 
 (defn- format-subnav [subnav]
   (str "uk-subnav-" subnav))
-
 
 (defmethod h/do! ::default
   [elem kw v]
