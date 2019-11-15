@@ -3,7 +3,7 @@
             [hoplon.jquery]))
 
 (defn- format-divider [divider]
-  (str "uk-divider" divider))
+  (str "uk-divider-" divider))
 
 (defmethod h/do! ::default
   [elem kw v]
