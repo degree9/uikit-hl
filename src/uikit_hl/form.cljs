@@ -36,6 +36,12 @@
     ::label true
     kids))
 
+(h/defelem controls [attr kids]
+  (h/label
+    attr
+    ::controls true
+    kids))
+
 (defmethod uk-form! ::input
   [elem kw v]
   (elem :class {:uk-input v}))
