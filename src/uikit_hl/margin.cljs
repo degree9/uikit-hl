@@ -14,7 +14,7 @@
 
 (defmethod uk-margin! ::default
   [elem kw v]
-  (elem :class {(format-margin (name kw)) v}))
+  (h/do! elem :class {(format-margin (name kw)) v}))
 
 (defmethod h/do! ::margin
   [elem _ v]
