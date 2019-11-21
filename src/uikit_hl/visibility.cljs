@@ -1,76 +1,52 @@
 (ns uikit-hl.visibility
-  (:require [hoplon.core :as hl]
-            [javelin.core :as j]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [hoplon.jquery]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-invisible* nil)
+(defmulti uk-visibility! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *uk-hidden-s*  nil)
-(def ^:dynamic *uk-hidden-m*  nil)
-(def ^:dynamic *uk-hidden-l*  nil)
-(def ^:dynamic *uk-hidden-xl* nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-visibility! elem key val))
 
-(def ^:dynamic *uk-visible-s*  nil)
-(def ^:dynamic *uk-visible-m*  nil)
-(def ^:dynamic *uk-visible-l*  nil)
-(def ^:dynamic *uk-visible-xl* nil)
+(defn- format-visibility [visibility]
+  (-> (str "uk-visibility-" visibility)
+    (s/replace "-s" "@s")
+    (s/replace "-m" "@m")
+    (s/replace "-l" "@l")))
 
-(defmethod hl/do! :uk-invisible
+(defmethod uk-visibility! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-visibility (name kw)) v}))
+
+(defmethod uk-visibility! ::hidden
+  [elem kw v]
+  (h/do! elem :hidden v))
+
+(defmethod uk-visibility! ::invisible
+  [elem kw v]
+  (h/do! elem :class {:uk-invisible v}))
+
+(defmethod uk-visibility! ::visible
+  [elem kw v]
+  (h/do! elem :class {:uk-visible v}))
+
+(defmethod uk-visibility! ::hidden-hover
+  [elem kw v]
+  (h/do! elem :class {:hidden-hover v}))
+
+(defmethod uk-visibility! ::invisible-hover
+  [elem kw v]
+  (h/do! elem :class {:uk-invisible-hover v}))
+
+(defmethod uk-visibility! ::hidden-touch
+  [elem kw v]
+  (h/do! elem :class {:hidden-touch v}))
+
+(defmethod uk-visibility! ::hidden-notouch
+  [elem kw v]
+  (h/do! elem :class {:hidden-notouch v}))
+
+(defmethod h/do! ::visibility
   [elem _ v]
-  (hl/do! elem :class/uikit {:uk-invisible v}))
-
-(defmethod hl/do! :uk-hidden-s
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-hidden@s") v}))
-
-(defmethod hl/do! :uk-hidden-m
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-hidden@m") v}))
-
-(defmethod hl/do! :uk-hidden-l
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-hidden@l") v}))
-
-(defmethod hl/do! :uk-hidden-xl
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-hidden@xl") v}))
-
-(hl/defelem hidden [attr kids]
-  (let [hidden-s  (:small  attr *uk-hidden-s*)
-        hidden-m  (:medium attr *uk-hidden-m*)
-        hidden-l  (:large  attr *uk-hidden-l*)
-        hidden-xl (:xlarge attr *uk-hidden-xl*)]
-    (hl/div attr
-      :uk-hidden-s  hidden-s
-      :uk-hidden-m  hidden-m
-      :uk-hidden-l  hidden-l
-      :uk-hidden-xl hidden-xl
-      kids)))
-
-(defmethod hl/do! :uk-visible-s
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-visible@s") v}))
-
-(defmethod hl/do! :uk-visible-m
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-visible@m") v}))
-
-(defmethod hl/do! :uk-visible-l
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-visible@l") v}))
-
-(defmethod hl/do! :uk-visible-xl
-  [elem _ v]
-  (hl/do! elem :class/uikit {(keyword "uk-visible@xl") v}))
-
-(hl/defelem visible [attr kids]
-  (let [visible-s  (:small  attr *uk-visible-s*)
-        visible-m  (:medium attr *uk-visible-m*)
-        visible-l  (:large  attr *uk-visible-l*)
-        visible-xl (:xlarge attr *uk-visible-xl*)]
-    (hl/div attr
-      :uk-visible-s  visible-s
-      :uk-visible-m  visible-m
-      :uk-visible-l  visible-l
-      :uk-visible-xl visible-xl
-      kids)))
+  (.visibility uk/uikit elem (clj->js v)))
