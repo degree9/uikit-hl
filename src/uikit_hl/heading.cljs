@@ -1,39 +1,28 @@
 (ns uikit-hl.heading
-  (:require [hoplon.core :as hl]))
+  (:require [hoplon.core :as h]))
 
-(defmethod hl/do! :uk-heading-primary
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-heading-primary v}))
+(defmulti uk-heading! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-heading-hero
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-heading-hero v}))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-heading! elem key val))
 
-(defmethod hl/do! :uk-heading-divider
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-heading-divider v}))
+(defn- format-heading [heading]
+  (str "uk-heading-" heading))
 
-(defmethod hl/do! :uk-heading-bullet
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-heading-bullet v}))
+(defmethod uk-heading! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-heading (name kw)) v}))
 
-(defmethod hl/do! :uk-heading-line
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-heading-line v}))
-
-(hl/defelem heading [attr kids]
-  (let [primary (:primary attr)
-        hero    (:hero    attr)
-        divider (:divider attr)
-        bullet  (:bullet  attr)
-        line    (:line    attr)
-        attr    (dissoc attr :uk-heading-primary :uk-heading-hero :uk-heading-divider
-                             :uk-heading-bullet :uk-heading-line)]
-    (hl/h1
-      attr
-      :uk-heading-primary primary
-      :uk-heading-hero    hero
-      :uk-heading-divider divider
-      :uk-heading-bullet  bullet
-      :uk-heading-line    line
-      kids)))
+(h/defelem heading [{:keys [small medium large xlarge 2xlarge divider bullet line] :as attr} kids]
+  (h/div
+    (dissoc attr :small :medium :large :xlarge :2xlarge :divider :bullet :line)
+    ::small small
+    ::medium medium
+    ::large large
+    ::xlarge xlarge
+    ::2xlarge 2xlarge
+    ::divider divider
+    ::bullet bullet
+    ::line line
+    kids))
