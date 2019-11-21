@@ -1,7 +1,7 @@
 (defn get-deps    []     (-> "./dependencies.edn" slurp read-string))
 ;(defn get-devdeps []     (read-file "./dev_dependencies.edn"))
 
-(set-env! :dependencies (get-deps))
+(set-env! :resource-paths #{"src"} :dependencies (get-deps))
 
 (require
  '[degree9.boot-semver :refer :all])
@@ -23,7 +23,6 @@
 (deftask develop
   "Build project for development."
   []
-  (merge-env! :resource-paths #{"src"})
   (comp
     (version :develop true
              :pre-release 'snapshot)
