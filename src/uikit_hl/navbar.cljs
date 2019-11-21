@@ -40,6 +40,12 @@
     ::center center
     kids))
 
+(h/defelem container [attr kids]
+  (h/div
+    attr
+    ::container true
+    kids))
+
 (h/defelem parent [attr kids]
   (h/li
     attr
@@ -81,6 +87,9 @@
     attr
     ::nav true
     kids))
+
+(h/defelem nav-item [attr kids]
+  (h/li attr kids))
 
 (h/defelem subtitle [attr kids]
   (h/div

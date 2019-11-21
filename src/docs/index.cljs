@@ -1,5 +1,5 @@
 (ns ^{:hoplon/page "docs.html"} docs.index
-  (:require [hoplon.core :as hl]
+  (:require [hoplon.core :as h]
             [javelin.core :as j]
             [hoplon.jquery]
             [uikit-hl.core :as core]
@@ -13,7 +13,7 @@
 
 
 (def route
-  (let [r (hl/route-cell "#")]
+  (let [r (h/route-cell "#")]
     (j/cell= (clojure.string/lower-case r))))
 
 (j/cell= (.log js/console route))
@@ -31,36 +31,36 @@
                               "Tile" "Toggle" "Tooltip" "Totop" "Transition" "Upload" "Utility"
                               "Visibility" "Width"]))
 
-(hl/html
-  (hl/head
+(h/html
+  (h/head
     (core/include-css)
-    (hl/link :rel "stylesheet" :href "css/theme.css"))
-  (hl/body
+    (h/link :rel "stylesheet" :href "css/theme.css"))
+  (h/body
     (offcanvas/content
       (navbar/container :uk-sticky {:media 960} :class [:tm-navbar-container]
         (container/container :expand true
           (navbar/navbar
             (navbar/left
-              (hl/a :class [:uk-navbar-item :uk-logo] "UIkit for Hoplon"))
+              (h/a :class [:uk-navbar-item :uk-logo] "UIkit for Hoplon"))
             (navbar/right
               (navbar/nav
                 (navbar/nav-item :parent true
                   :href "https://github.com/degree9/uikit-hl"
                   :title "View on Github"))))))
-      (hl/div :class [:tm-sidebar-left]
-        (hl/h3 "Documentation")
+      (h/div :class [:tm-sidebar-left]
+        (h/h3 "Documentation")
         (nav/nav :default true :class [:tm-nav]
           (nav/header "Getting Started")
           (nav/item :title "Introduction" :href "#")
           (nav/item :title "Attribute Providers" :href "#attributes"))
         (nav/nav :default true :class [:tm-nav]
           (nav/header "Components")
-          (hl/for-tpl [component components-list]
+          (h/for-tpl [component components-list]
             (nav/item :title component :href (str "#" @component)))))
       (section/section :default true :class [:tm-main]
         (container/container :small true
-          (hl/div
-            (hl/case-tpl route
+          (h/div
+            (h/case-tpl route
               "#"           (comp/index)
               "#attributes" (comp/attributes)
               "#accordion"  (comp/accordion)
@@ -68,7 +68,7 @@
               "#align"      (comp/align)
               "#animation"  (comp/animation)
               "#article"    (comp/article)))
-          (hl/div :class [:tm-sidebar-right]
-            (hl/div :uk-sticky {:offset 160}))))
+          (h/div :class [:tm-sidebar-right]
+            (h/div :uk-sticky {:offset 160}))))
               
       (offcanvas/offcanvas))))
