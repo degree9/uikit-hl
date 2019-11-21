@@ -1,11 +1,28 @@
 (ns uikit-hl.breadcrumb
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]))
 
-(hl/defelem breadcrumb [attr kids]
-  (let []
-    (hl/ul (core/assoc-class attr {:uk-breadcrumb true}) kids)))
+(defmulti uk-breadcrumb! h/kw-dispatcher :default ::default)
 
-(hl/defelem item [attr kids]
-  (let []
-    (hl/li attr kids)))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-breadcrumb! elem key val))
+
+(defn- format-breadcrumb [breadcrumb]
+  (str "uk-breadcrumb-" breadcrumb))
+
+(defmethod uk-breadcrumb! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-breadcrumb (name kw)) v}))
+
+(defmethod uk-breadcrumb! ::breadcrumb
+  [elem kw v]
+  (h/do! elem :class {:uk-breadcrumb v}))
+
+(h/defelem breadcrumb [attr kids]
+  (h/ul attr ::breadcrumb true kids))
+
+(h/defelem link-item [attr kids]
+  (h/li (h/a attr kids)))
+
+(h/defelem active-item [attr kids]
+  (h/li (h/span attr kids)))
