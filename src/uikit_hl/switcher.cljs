@@ -1,24 +1,30 @@
 (ns uikit-hl.switcher
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-switcher* "")
-(def ^:dynamic *bottom* nil)
+(defmulti uk-switcher! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *title* nil)
-(def ^:dynamic *href* nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-switcher! elem key val))
 
-(defmethod hl/do! :uk-switcher
+(defn- format-switcher [switcher]
+  (str "uk-switcher-" switcher))
+
+(defmethod uk-switcher! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-switcher (name kw)) v}))
+
+(defmethod h/do! ::switcher
   [elem _ v]
-  (.switcher uikit elem (clj->js v)))
+  (.switcher uk/uikit elem (clj->js v)))
 
-(hl/defelem switcher [attr kids]
-  (let []
-    (hl/ul (core/assoc-class attr {:uk-switcher true}) kids)))
+(defmethod h/do! ::item
+  [elem _ v]
+  (h/do! elem :uk-switcher-item v))
 
-(hl/defelem item [attr kids]
-  (let [title    (:title    attr *title*)
-        href     (:href     attr *href*)
-        attr     (dissoc    attr :title :href)]
-    (hl/li attr [(hl/a :href href title) kids])))
+(h/defelem switcher [{:keys [switcher] :or {switcher {}} :as attr} kids]
+  (h/ul
+    (dissoc attr :switcher)
+    ::switcher switcher
+    kids))
