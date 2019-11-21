@@ -1,91 +1,119 @@
 (ns uikit-hl.navbar
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-navbar*   "")
-(def ^:dynamic *transparent* nil)
-(def ^:dynamic *container*   nil)
-(def ^:dynamic *parent*      nil)
-(def ^:dynamic *active*      nil)
-(def ^:dynamic *width*       nil)
+(defmulti uk-navbar! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *href*       nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-navbar! elem key val))
 
-(defmethod hl/do! :uk-navbar
+(defn- format-navbar [navbar]
+  (str "uk-navbar-" navbar))
+
+(defmethod uk-navbar! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-navbar (name kw)) v}))
+
+(defmethod h/do! ::navbar
   [elem _ v]
-  (.navbar uikit elem (clj->js v)))
+  (.navbar uk/uikit elem (clj->js v)))
 
-(defmethod hl/do! :uk-navbar-dropdown-nav
-  [elem _ v]
-  (hl/do! elem :class {:uk-navbar-dropdown-nav v}))
+(defmethod uk-navbar! ::active
+  [elem kw v]
+  (h/do! elem :class {:uk-active v}))
 
-(hl/defelem navbar [attr kids]
-  (let [navbar      (:uk-navbar attr *uk-navbar*)
-        container   (:container attr *container*)
-        transparent (:transparent attr *transparent*)
-        attr (assoc attr :uk-navbar navbar)]
-    (hl/nav
-      (core/assoc-class attr {:uk-navbar-container   container
-                              :uk-navbar-transparent transparent}) kids)))
+(defmethod uk-navbar! ::parent
+  [elem kw v]
+  (h/do! elem :class {:uk-active v}))
 
-(hl/defelem container [attr kids]
-  (let []
-    (hl/div
-      (core/assoc-class attr {:uk-navbar-container true}) kids)))
+(defmethod uk-navbar! ::toggle
+  [elem kw v]
+  (h/do! elem :uk-navbar-toggle-icon v))
 
-(hl/defelem left [attr kids]
-  (let []
-    (hl/div
-      (core/assoc-class attr {:uk-navbar-left true}) kids)))
+(h/defelem navbar [{:keys [navbar container transparent primary center] :or {navbar {}} :as attr} kids]
+  (h/ul
+    (dissoc attr :navbar :container :transparent :center)
+    ::navbar navbar
+    ::container container
+    ::transparent transparent
+    ::center center
+    kids))
 
-(hl/defelem center [attr kids]
-  (let []
-    (hl/div
-      (core/assoc-class attr {:uk-navbar-center true}) kids)))
+(h/defelem parent [attr kids]
+  (h/li
+    attr
+    ::parent true
+    kids))
 
-(hl/defelem center-left [attr kids]
-  (let []
-    (hl/div
-      (core/assoc-class attr {:uk-navbar-center-left true}) kids)))
+(h/defelem left [attr kids]
+  (h/div
+    attr
+    ::left true
+    kids))
 
-(hl/defelem center-right [attr kids]
-  (let []
-    (hl/div
-      (core/assoc-class attr {:uk-navbar-center-right true}) kids)))
+(h/defelem center [attr kids]
+  (h/div
+    attr
+    ::center true
+    kids))
 
-(hl/defelem right [attr kids]
-  (let []
-    (hl/div
-      (core/assoc-class attr {:uk-navbar-right true}) kids)))
+(h/defelem center-left [attr kids]
+  (h/div
+    attr
+    ::center-left true
+    kids))
 
-(hl/defelem nav [attr kids]
-  (let []
-    (hl/ul (core/assoc-class attr {:uk-navbar-nav true}) kids)))
+(h/defelem center-right [attr kids]
+  (h/div
+    attr
+    ::center-right true
+    kids))
 
-(hl/defelem nav-item [attr kids]
-  (let [parent (:parent attr *parent*)
-        active (:active attr *active*)
-        href   (:href   attr *href*)
-        attr   (dissoc attr :parent :active :href)]
-    (hl/li (core/assoc-class attr {:uk-parent parent :uk-active active}) (hl/a :href href kids))))
+(h/defelem right [attr kids]
+  (h/div
+    attr
+    ::right true
+    kids))
 
-(hl/defelem subtitle [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-navbar-subtitle true}) kids)))
+(h/defelem nav [attr kids]
+  (h/ul
+    attr
+    ::nav true
+    kids))
 
-(hl/defelem item [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-navbar-item true}) kids)))
+(h/defelem subtitle [attr kids]
+  (h/div
+    attr
+    ::subtitle true
+    kids))
 
-(hl/defelem toggle [attr kids]
-  (let []
-    (hl/a (core/assoc-class attr {:uk-navbar-toggle true}) [(hl/span :uk-navbar-toggle-icon "") kids])))
+(h/defelem item [attr kids]
+  (h/div
+    attr
+    ::item true
+    kids))
 
-(hl/defelem dropbar [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-navbar-dropbar true}) kids)))
+(h/defelem toggle [attr kids]
+  (h/a
+    attr
+    ::toggle true
+    kids))
 
-(hl/defelem dropdown [attr kids]
-  (let []
-    (hl/div (core/assoc-class attr {:uk-navbar-dropdown true}) kids)))
+(h/defelem dropdown [attr kids]
+  (h/div
+    attr
+    ::dropdown true
+    kids))
+
+(h/defelem dropdown-nav [attr kids]
+  (h/ul
+    attr
+    ::dropdown-nav true
+    kids))
+
+(h/defelem dropbar [attr kids]
+  (h/div
+    attr
+    ::dropbar true
+    kids))
