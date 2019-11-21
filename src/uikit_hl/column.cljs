@@ -1,7 +1,6 @@
 (ns uikit-hl.column
   (:require [clojure.string :as s]
-            [hoplon.core :as h]
-            [hoplon.jquery]))
+            [hoplon.core :as h]))
 
 (defn- format-column [column]
   (-> (str "uk-" column)
