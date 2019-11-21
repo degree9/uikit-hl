@@ -1,19 +1,29 @@
 (ns uikit-hl.container
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-container* "")
-(def ^:dynamic *small* nil)
-(def ^:dynamic *large* nil)
-(def ^:dynamic *expand* nil)
+(defmulti uk-container! h/kw-dispatcher :default ::default)
 
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-container! elem key val))
 
-(hl/defelem container [attr kids]
-  (let [small  (:small  attr *small*)
-        large  (:large  attr *large*)
-        expand (:expand attr *expand*)
-        attr   (dissoc  attr :small :large :expand)]
-    (hl/div (core/assoc-class attr {:uk-container        true
-                                    :uk-container-small  small
-                                    :uk-container-large  large
-                                    :uk-container-expand expand}) kids)))
+(defn- format-container [container]
+  (str "uk-container-" container))
+
+(defmethod uk-container! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-container (name kw)) v}))
+
+(defmethod uk-container! ::container
+  [elem kw v]
+  (h/do! elem :class {:uk-container v}))
+
+(h/defelem container [{:keys [small large expand] :as attr} kids]
+  (h/div
+    (dissoc attr :small :large :expand)
+    ::container true
+    ::small small
+    ::large large
+    ::expand expand
+    kids))

@@ -1,10 +1,26 @@
 (ns uikit-hl.close
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]))
 
-(def ^:dynamic *uk-close* "")
+(defmulti uk-close! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-close
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-close! elem key val))
+
+(defn- format-close [close]
+  (str "uk-close-" close))
+
+(defmethod uk-close! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-close (name kw)) v}))
+
+(defmethod h/do! ::close
   [elem _ v]
-  (.close uikit elem (clj->js v)))
+  (h/do! elem :uk-close (clj->js v)))
+
+(h/defelem close [{:keys [large] :as attr} kids]
+  (h/button
+    (dissoc attr :large)
+    ::close true
+    ::large large
+    kids))

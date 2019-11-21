@@ -1,15 +1,32 @@
 (ns uikit-hl.article
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *title* "")
-(def ^:dynamic *meta* "")
+(defmulti uk-article! h/kw-dispatcher :default ::default)
 
-(hl/defelem article [attr kids]
-  (let [title (:title attr *title*)
-        meta  (:meta attr *meta*)
-        attr  (-> attr (dissoc :title :meta) (assoc :class [:uk-article]))]
-    (hl/article attr
-      (hl/h1 :class [:uk-article-title] title)
-      (hl/p :class [:uk-article-meta] meta)
-      (hl/p kids))))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-article! elem key val))
+
+(defn- format-article [article]
+  (str "uk-article-" article))
+
+(defmethod uk-article! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-article (name kw)) v}))
+
+(defmethod uk-article! ::article
+  [elem kw v]
+  (h/do! elem :class {:uk-article v}))
+
+(h/defelem article [{:keys [article] :as attr} kids]
+  (h/div
+    (dissoc attr :article)
+    ::article article
+    kids))
+
+(h/defelem title [attr kids]
+  (h/h1 attr ::title true kids))
+
+(h/defelem meta [attr kids]
+  (h/p attr ::meta true kids))

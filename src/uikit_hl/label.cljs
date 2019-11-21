@@ -1,32 +1,22 @@
 (ns uikit-hl.label
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]))
 
-(defmethod hl/do! :uk-label
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-label v}))
+(defmulti uk-label! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-label-success
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-label-success v}))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-label! elem key val))
 
-(defmethod hl/do! :uk-label-warning
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-label-warning v}))
+(defn- format-label [label]
+  (str "uk-label-" label))
 
-(defmethod hl/do! :uk-label-danger
-  [elem _ v]
-  (hl/do! elem :class/uikit {:uk-label-danger v}))
+(defmethod uk-label! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-label (name kw)) v}))
 
-(hl/defelem label [attr kids]
-  (let [success (:success attr)
-        warning (:warning attr)
-        danger  (:danger  attr)
-        attr    (dissoc attr :success :warning :danger)]
-    (hl/span
-      attr
-      :uk-label true
-      :uk-label-success success
-      :uk-label-warning warning
-      :uk-label-danger  danger
-      kids)))
+(defmethod uk-label! ::label
+  [elem kw v]
+  (h/do! elem :class {:uk-label v}))
+
+(h/defelem label [attr kids]
+  (h/span attr ::label true kids))

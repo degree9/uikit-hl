@@ -1,58 +1,56 @@
 (ns uikit-hl.card
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *default* nil)
-(def ^:dynamic *primary* nil)
-(def ^:dynamic *secondary* nil)
+(defmulti uk-card! h/kw-dispatcher :default ::default)
 
-(def ^:dynamic *hover* nil)
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-card! elem key val))
 
-(def ^:dynamic *small* nil)
-(def ^:dynamic *large* nil)
+(defn- format-card [card]
+  (str "uk-card-" card))
 
-(def ^:dynamic *top*    nil)
-(def ^:dynamic *bottom* nil)
-(def ^:dynamic *left*   nil)
-(def ^:dynamic *right*  nil)
+(defmethod uk-card! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-card (name kw)) v}))
 
-(hl/defelem card [attr kids]
-  (let [default   (:default   attr *default*)
-        primary   (:primary   attr *primary*)
-        secondary (:secondary attr *secondary*)
-        hover     (:hover     attr *hover*)
-        small     (:small     attr *small*)
-        large     (:large     attr *large*)
-        attr      (dissoc     attr :default :primary :secondary :hover :small :large)]
-    (hl/div (core/assoc-class attr {:uk-card           true
-                                    :uk-card-default   default
-                                    :uk-card-primary   primary
-                                    :uk-card-secondary secondary
-                                    :uk-card-hover     hover
-                                    :uk-card-small     small
-                                    :uk-card-large     large}) kids)))
+(defmethod uk-card! ::card
+  [elem kw v]
+  (h/do! elem :class {:uk-card v}))
 
-(hl/defelem media [attr kids]
-  (let [top    (:top    attr *top*)
-        bottom (:bottom attr *bottom*)
-        right  (:right  attr *right*)
-        left   (:left   attr *left*)]
-    (hl/div (core/assoc-class attr {:uk-card-media-top    top
-                                    :uk-card-media-bottom bottom
-                                    :uk-card-media-right  right
-                                    :uk-card-media-left   left}) kids)))
+(h/defelem card [{:keys [default primary secondary] :as attr} kids]
+  (h/div
+    (dissoc attr :default :primary :secondary)
+    ::card true
+    ::default default
+    ::primary primary
+    ::secondary secondary
+    kids))
 
-(hl/defelem header [attr kids]
-  (hl/div attr :class/uikit {:uk-card-header true} kids))
+(h/defelem header [attr kids]
+  (h/div attr ::header true kids))
 
-(hl/defelem body [attr kids]
-  (hl/div attr :class/uikit {:uk-card-body true} kids))
+(h/defelem title [attr kids]
+  (h/h3 attr ::title true kids))
 
-(hl/defelem footer [attr kids]
-  (hl/div attr :class/uikit {:uk-card-footer true} kids))
+(h/defelem body [attr kids]
+  (h/div attr ::body true kids))
 
-(hl/defelem badge [attr kids]
-  (hl/div attr :class/uikit {:uk-label true :uk-card-badge true} kids))
+(h/defelem footer [attr kids]
+  (h/div attr ::footer true kids))
 
-(hl/defelem title [attr kids]
-  (hl/h3  attr :class/uikit {:uk-card-title true} kids))
+(h/defelem badge [attr kids]
+  (h/div attr ::badge true kids))
+
+(h/defelem media-top [attr kids]
+  (h/div attr ::media-top true kids))
+
+(h/defelem media-bottom [attr kids]
+  (h/div attr ::media-bottom true kids))
+
+(h/defelem media-left [attr kids]
+  (h/div attr ::media-left true kids))
+
+(h/defelem media-right [attr kids]
+  (h/div attr ::media-right true kids))

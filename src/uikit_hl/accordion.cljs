@@ -10,16 +10,16 @@
 
 (defmethod uk-accordion! ::default
   [elem _ val]
-  (.accordion uikit elem (clj->js val)))
+  (.accordion uk/uikit elem (clj->js val)))
 
-(hl/defelem accordion [{:keys [accordion] :or {accordion {}} :as attr} kids]
-  (hl/ul
+(h/defelem accordion [{:keys [accordion] :or {accordion {}} :as attr} kids]
+  (h/ul
     (dissoc attr :accordion)
     ::accordion accordion
     kids))
 
-(hl/defelem title [attr kids]
-  (hl/h3 attr ::title true kids))
+(h/defelem title [attr kids]
+  (h/h3 attr ::title true kids))
 
-(hl/defelem content [attr kids]
-  (hl/div attr ::content true kids))
+(h/defelem content [attr kids]
+  (h/div attr ::content true kids))

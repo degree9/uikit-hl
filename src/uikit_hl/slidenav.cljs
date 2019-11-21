@@ -1,31 +1,40 @@
-(ns uikit-hl.slidenav
-  (:require [hoplon.core :as hl]
-            ["uikit" :as uikit]
-            [uikit-hl.core :as core]
-            [uikit-hl.icon :as icon]))
+(ns uikit-hl.progress
+  (:require [hoplon.core :as h]))
 
-(def ^:dynamic *uk-slidenav-large* false)
+(defmulti uk-progress! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-slidenav-next
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-progress! elem key val))
+
+(defn- format-progress [progress]
+  (str "uk-progress-" progress))
+
+(defmethod uk-progress! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-progress (name kw)) v}))
+
+(defmethod h/do! ::next
   [elem _ v]
-  (.slidenavNext uikit elem v))
+  (h/do! elem :uk-slidenav-next v))
 
-(defmethod hl/do! :uk-slidenav-previous
+(defmethod h/do! ::previous
   [elem _ v]
-  (.slidenavPrevious uikit elem v))
+  (h/do! elem :uk-slidenav-previous v))
 
-(defmethod hl/do! :uk-slidenav-large
-  [elem _ v]
-  (hl/do! elem :class {:uk-slidenav-large v}))
+(h/defelem next [{:keys [large] :as attr} kids]
+  (h/a
+    (dissoc attr :large)
+    ::next true
+    ::large large
+    kids))
 
-(hl/defelem slidenav-next [attr kids]
-  (let [large (:large attr *uk-slidenav-large*)
-        attr (assoc attr :uk-slidenav-next true
-                         :uk-slidenav-large large)]
-    (hl/a attr kids)))
+(h/defelem previous [{:keys [large] :as attr} kids]
+  (h/a
+    (dissoc attr :large)
+    ::previous true
+    ::large large
+    kids))
 
-(hl/defelem slidenav-previous [attr kids]
-  (let [large (:large attr *uk-slidenav-large*)
-        attr (assoc attr :uk-slidenav-previous true
-                         :uk-slidenav-large large)]
-    (hl/a attr kids)))
+(h/defelem container [attr kids]
+  (h/div attr ::container true kids))
