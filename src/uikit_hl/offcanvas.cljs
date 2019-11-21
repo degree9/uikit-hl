@@ -19,22 +19,26 @@
   [elem _ v]
   (.offcanvas uk/uikit elem (clj->js v)))
 
-;;;;
-
 (h/defelem content [attr kids]
   (h/div
     attr
     ::content true
     kids))
 
-(h/defelem offcanvas [attr kids]
+(h/defelem offcanvas [{:keys [offcanvas] :or {offcanvas {}} :as attr} kids]
   (h/div
     attr
-    ::offcanvas {}
+    ::offcanvas offcanvas
     kids))
 
 (h/defelem bar [attr kids]
   (h/div
     attr
     ::bar true
+    kids))
+
+(h/defelem close [attr kids]
+  (h/button
+    attr
+    ::close true
     kids))
