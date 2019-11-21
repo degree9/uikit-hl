@@ -19,4 +19,4 @@
   (h/do! elem :class {:uk-placeholder v}))
 
 (hl/defelem placeholder [attr kids]
-  (hl/div attr :uk-placeholder true kids))
+  (hl/div attr ::placeholder true kids))
