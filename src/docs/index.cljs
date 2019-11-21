@@ -9,8 +9,8 @@
             [uikit-hl.navbar :as navbar]
             [uikit-hl.section :as section]
             [uikit-hl.sticky :as sticky]
-            [docs.components :as comp]
-            ))
+            [docs.components :as comp]))
+
 
 (def route
   (let [r (hl/route-cell "#")]
@@ -69,6 +69,6 @@
               "#animation"  (comp/animation)
               "#article"    (comp/article)))
           (hl/div :class [:tm-sidebar-right]
-            (hl/div :uk-sticky {:offset 160}
-              ))))
+            (hl/div :uk-sticky {:offset 160}))))
+              
       (offcanvas/offcanvas))))
