@@ -1,13 +1,33 @@
 (ns uikit-hl.dotnav
-  (:require [hoplon.core :as hl]
-            ["uikit" :as uikit]
-            [uikit-hl.core :as core]
-            [uikit-hl.icon :as icon]))
+  (:require [hoplon.core :as h]))
 
-(defmethod hl/do! :uk-dotnav
-  [elem _ v]
-  (hl/do! elem :class {:uk-dotnav v}))
+(defmulti uk-dotnav! h/kw-dispatcher :default ::default)
 
-(hl/defelem dotnav [attr kids]
-  (let [attr (assoc attr :uk-dotnav true)]
-    (hl/ul attr kids)))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-dotnav! elem key val))
+
+(defn- format-dotnav [dotnav]
+  (str "uk-dotnav-" dotnav))
+
+(defmethod uk-dotnav! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-dotnav (name kw)) v}))
+
+(defmethod uk-dotnav! ::dotnav
+  [elem kw v]
+  (h/do! elem :class {:uk-dotnav v}))
+
+(defmethod uk-dotnav! ::active
+  [elem kw v]
+  (h/do! elem :class {:uk-active v}))
+
+(h/defelem dotnav [{:keys [vertical] :as attr} kids]
+  (h/ul
+    (dissoc attr :vertical)
+    ::dotnav true
+    ::vertical vertical
+    kids))
+
+(h/defelem item [attr kids]
+  (h/li attr kids))
