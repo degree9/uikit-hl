@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-drop (name kw)) v}))
 
-(defmethod h/do! ::drop
+(defmethod uk-drop! ::drop
   [elem _ v]
   (.drop uk/uikit elem (clj->js v)))

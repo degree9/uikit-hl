@@ -15,7 +15,7 @@
   [elem kw v]
   (h/do! elem :class {(format-alert (name kw)) v}))
 
-(defmethod h/do! ::alert
+(defmethod uk-alert! ::alert
   [elem _ v]
   (.alert uk/uikit elem (clj->js v)))
 

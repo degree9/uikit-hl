@@ -24,7 +24,7 @@
   [elem kw v]
   (h/do! elem :class {:uk-disabled v}))
 
-(defmethod h/do! ::tab
+(defmethod uk-tab! ::tab
   [elem _ v]
   (.tab uk/uikit elem (clj->js v)))
 

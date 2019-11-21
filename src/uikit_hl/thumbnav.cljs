@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-thumbnav (name kw)) v}))
 
-(defmethod h/do! ::thumbnav
+(defmethod uk-thumbnav! ::thumbnav
   [elem _ v]
   (h/do! elem :class {:uk-thumbnav v}))

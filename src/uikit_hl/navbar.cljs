@@ -15,7 +15,7 @@
   [elem kw v]
   (h/do! elem :class {(format-navbar (name kw)) v}))
 
-(defmethod h/do! ::navbar
+(defmethod uk-navbar! ::navbar
   [elem _ v]
   (.navbar uk/uikit elem (clj->js v)))
 

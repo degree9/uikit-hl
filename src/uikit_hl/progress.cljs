@@ -14,7 +14,7 @@
   [elem kw v]
   (h/do! elem :class {(format-progress (name kw)) v}))
 
-(defmethod h/do! ::progress
+(defmethod uk-progress! ::progress
   [elem _ v]
   (h/do! elem :class {:uk-progress v}))
 

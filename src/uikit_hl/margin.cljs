@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-margin (name kw)) v}))
 
-(defmethod h/do! ::margin
+(defmethod uk-margin! ::margin
   [elem _ v]
   (.margin uk/uikit elem (clj->js v)))

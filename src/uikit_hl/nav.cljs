@@ -15,7 +15,7 @@
   [elem kw v]
   (h/do! elem :class {(format-nav (name kw)) v}))
 
-(defmethod h/do! ::nav
+(defmethod uk-nav! ::nav
   [elem _ v]
   (.nav uk/uikit elem (clj->js v)))
 

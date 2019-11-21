@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-parallax (name kw)) v}))
 
-(defmethod h/do! ::parallax
+(defmethod uk-parallax! ::parallax
   [elem _ v]
   (.parallax uk/uikit elem (clj->js v)))

@@ -16,7 +16,7 @@
   [elem kw v]
   (h/do! elem :class {(format-section (name kw)) v}))
 
-(defmethod h/do! ::section
+(defmethod uk-section! ::section
   [elem _ v]
   (h/do! elem :class {:uk-section v}))
 

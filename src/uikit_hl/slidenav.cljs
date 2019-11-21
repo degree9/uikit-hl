@@ -14,11 +14,11 @@
   [elem kw v]
   (h/do! elem :class {(format-slidenav (name kw)) v}))
 
-(defmethod h/do! ::next
+(defmethod uk-slidenav! ::next
   [elem _ v]
   (h/do! elem :uk-slidenav-next v))
 
-(defmethod h/do! ::previous
+(defmethod uk-slidenav! ::previous
   [elem _ v]
   (h/do! elem :uk-slidenav-previous v))
 

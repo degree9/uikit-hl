@@ -14,7 +14,7 @@
   [elem kw v]
   (h/do! elem :class {(format-close (name kw)) v}))
 
-(defmethod h/do! ::close
+(defmethod uk-close! ::close
   [elem _ v]
   (h/do! elem :uk-close (clj->js v)))
 

@@ -15,11 +15,11 @@
   [elem kw v]
   (h/do! elem :class {(format-switcher (name kw)) v}))
 
-(defmethod h/do! ::switcher
+(defmethod uk-switcher! ::switcher
   [elem _ v]
   (.switcher uk/uikit elem (clj->js v)))
 
-(defmethod h/do! ::item
+(defmethod uk-switcher! ::item
   [elem _ v]
   (h/do! elem :uk-switcher-item v))
 
