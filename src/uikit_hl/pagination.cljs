@@ -36,3 +36,9 @@
 
 (h/defelem pagination [attr kids]
   (h/ul attr ::pagination true kids))
+
+(h/defelem next [attr kids]
+  (h/li (h/a (h/span attr ::next true kids))))
+
+(h/defelem previous [attr kids]
+  (h/li (h/a (h/span attr ::previous true kids))))
