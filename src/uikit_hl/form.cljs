@@ -37,7 +37,7 @@
     kids))
 
 (h/defelem controls [attr kids]
-  (h/label
+  (h/div
     attr
     ::controls true
     kids))

@@ -14,7 +14,7 @@
 
 (defmethod uk-inverse! ::default
   [elem kw v]
-  (h/do! elem :class {(format-inverse (name kw)) v})
+  (h/do! elem :class {(format-inverse (name kw)) v}))
 
 (defmethod uk-inverse! ::light
   [elem kw v]

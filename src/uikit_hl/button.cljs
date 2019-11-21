@@ -1,6 +1,5 @@
 (ns uikit-hl.button
-  (:require [clojure.string :as s]
-            [hoplon.core :as h]
+  (:require [hoplon.core :as h]
             [hoplon.jquery]))
 
 (defmulti uk-button! h/kw-dispatcher :default ::default)
