@@ -26,7 +26,7 @@
     kids))
 
 (h/defelem title [attr kids]
-  (h/div attr ::title true kids))
+  (h/h1 attr ::title true kids))
 
 (h/defelem meta [attr kids]
-  (h/div attr ::meta true kids))
+  (h/p attr ::meta true kids))
