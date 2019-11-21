@@ -15,7 +15,7 @@
 
 (defmethod uk-icon! ::default
   [elem kw v]
-  (.icon uikit elem (clj->js v)))
+  (.icon uk/uikit elem (clj->js v)))
 
 (h/defelem icon [attr kids]
   (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))

@@ -36,3 +36,6 @@
     ::left left
     ::right right
     kids))
+
+(h/defelem item [attr kids]
+  (h/li attr kids))

@@ -1,5 +1,5 @@
 (ns uikit-hl.placeholder
-  (:require [hoplon.core :as hl]))
+  (:require [hoplon.core :as h]))
 
 (defmulti uk-placeholder! h/kw-dispatcher :default ::default)
 
@@ -18,5 +18,5 @@
   [elem _ v]
   (h/do! elem :class {:uk-placeholder v}))
 
-(hl/defelem placeholder [attr kids]
-  (hl/div attr ::placeholder true kids))
+(h/defelem placeholder [attr kids]
+  (h/div attr ::placeholder true kids))

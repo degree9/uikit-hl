@@ -14,14 +14,18 @@
   [elem kw v]
   (h/do! elem :class {(format-heading (name kw)) v}))
 
-(h/defelem heading [{:keys [small medium large xlarge 2xlarge divider bullet line] :as attr} kids]
+(defmethod uk-heading! ::xlarge2
+  [elem kw v]
+  (h/do! elem :class {"2xlarge" v}))
+
+(h/defelem heading [{:keys [small medium large xlarge xlarge2 divider bullet line] :as attr} kids]
   (h/div
-    (dissoc attr :small :medium :large :xlarge :2xlarge :divider :bullet :line)
+    (dissoc attr :small :medium :large :xlarge :xlarge2 :divider :bullet :line)
     ::small small
     ::medium medium
     ::large large
     ::xlarge xlarge
-    ::2xlarge 2xlarge
+    ::xlarge2 xlarge2
     ::divider divider
     ::bullet bullet
     ::line line

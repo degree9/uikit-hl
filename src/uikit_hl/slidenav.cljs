@@ -1,18 +1,18 @@
-(ns uikit-hl.progress
+(ns uikit-hl.slidenav
   (:require [hoplon.core :as h]))
 
-(defmulti uk-progress! h/kw-dispatcher :default ::default)
+(defmulti uk-slidenav! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
   [elem key val]
-  (uk-progress! elem key val))
+  (uk-slidenav! elem key val))
 
-(defn- format-progress [progress]
-  (str "uk-progress-" progress))
+(defn- format-slidenav [slidenav]
+  (str "uk-slidenav-" slidenav))
 
-(defmethod uk-progress! ::default
+(defmethod uk-slidenav! ::default
   [elem kw v]
-  (h/do! elem :class {(format-progress (name kw)) v}))
+  (h/do! elem :class {(format-slidenav (name kw)) v}))
 
 (defmethod h/do! ::next
   [elem _ v]
