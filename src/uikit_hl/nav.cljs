@@ -1,42 +1,64 @@
 (ns uikit-hl.nav
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-nav*      "")
-(def ^:dynamic *default*     nil)
-(def ^:dynamic *title*       nil)
-(def ^:dynamic *href*        nil)
-(def ^:dynamic *parent*      nil)
-(def ^:dynamic *active*      nil)
-(def ^:dynamic *parent-icon* nil)
+(defmulti uk-nav! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-nav
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-nav! elem key val))
+
+(defn- format-nav [nav]
+  (str "uk-nav-" nav))
+
+(defmethod uk-nav! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-nav (name kw)) v}))
+
+(defmethod h/do! ::nav
   [elem _ v]
-  (.nav uikit elem (clj->js v)))
+  (.nav uk/uikit elem (clj->js v)))
 
+(defmethod uk-nav! ::active
+  [elem kw v]
+  (h/do! elem :class {:uk-active v}))
 
-(hl/defelem nav [attr kids]
-  (let [nav         (:uk-nav  attr *uk-nav*)
-        default     (:default attr *default*)
-        parent-icon (:parent-icon attr *parent-icon*)
-        attr        (-> attr
-                      (assoc  :uk-nav nav)
-                      (dissoc :default))]
-    (hl/ul (core/assoc-class attr {:uk-nav             true
-                                   :uk-nav-default     default
-                                   :uk-nav-parent-icon parent-icon}) kids)))
+(defmethod uk-nav! ::parent
+  [elem kw v]
+  (h/do! elem :class {:uk-active v}))
 
-(hl/defelem header [attr kids]
-  (let []
-    (hl/li (core/assoc-class attr {:uk-nav-header true}) kids)))
+(h/defelem nav [{:keys [nav default parent-icon primary center] :or {nav {}} :as attr} kids]
+  (h/ul
+    (dissoc attr :nav :default :parent-icon :primary :center)
+    ::nav nav
+    ::default default
+    ::parent-icon parent-icon
+    ::center center
+    kids))
 
-(hl/defelem item [attr kids]
-  (let [parent (:parent attr *parent*)
-        active (:active attr *active*)
-        attr   (dissoc  attr :active :parent)]
-    (hl/li (core/assoc-class attr {:uk-parent parent :uk-active active}) kids)))
+(h/defelem parent [attr kids]
+  (h/li
+    attr
+    ::parent true
+    kids))
 
-(hl/defelem subnav [attr kids]
-  (let []
-    (hl/ul (core/assoc-class attr {:uk-nav-sub true}) kids)))
+(h/defelem subnav [attr kids]
+  (h/ul
+    attr
+    ::sub true
+    kids))
+
+(h/defelem header [attr kids]
+  (h/li
+    attr
+    ::header true
+    kids))
+
+(h/defelem divider [attr kids]
+  (h/li
+    attr
+    ::divider true
+    kids))
+
+(h/defelem item [attr kids]
+  (h/li attr kids))
