@@ -47,6 +47,6 @@
   [elem kw v]
   (h/do! elem :class {:hidden-notouch v}))
 
-(defmethod h/do! ::visibility
+(defmethod uk-visibility! ::visibility
   [elem _ v]
   (.visibility uk/uikit elem (clj->js v)))

@@ -16,7 +16,7 @@
   [elem kw v]
   (h/do! elem :class {(format-slider (name kw)) v}))
 
-(defmethod h/do! ::slider
+(defmethod uk-slider! ::slider
   [elem _ v]
   (.slider uk/uikit elem (clj->js v)))
 

@@ -15,7 +15,7 @@
   [elem kw v]
   (h/do! elem :class {(format-modal (name kw)) v}))
 
-(defmethod h/do! ::modal
+(defmethod uk-modal! ::modal
   [elem _ v]
   (.modal uk/uikit elem (clj->js v)))
 

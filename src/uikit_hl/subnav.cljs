@@ -16,7 +16,7 @@
   [elem kw v]
   (h/do! elem :class {(format-subnav (name kw)) v}))
 
-(defmethod h/do! ::subnav
+(defmethod uk-subnav! ::subnav
   [elem _ v]
   (h/do! elem :class {:uk-subnav v}))
 

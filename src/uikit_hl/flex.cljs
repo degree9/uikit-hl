@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-flex (name kw)) v}))
 
-(defmethod h/do! ::flex
+(defmethod uk-flex! ::flex
   [elem _ v]
   (h/do! elem :class {:uk-flex v}))

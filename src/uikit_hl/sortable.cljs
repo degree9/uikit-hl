@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-sortable (name kw)) v}))
 
-(defmethod h/do! ::sortable
+(defmethod uk-sortable! ::sortable
   [elem _ v]
   (.sortable uk/uikit elem (clj->js v)))

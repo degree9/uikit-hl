@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-iconnav (name kw)) v}))
 
-(defmethod h/do! ::iconnav
+(defmethod uk-iconnav! ::iconnav
   [elem _ v]
   (h/do! elem :class {:uk-iconnav v}))

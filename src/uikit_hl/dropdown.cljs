@@ -15,7 +15,7 @@
   [elem kw v]
   (h/do! elem :class {(format-dropdown (name kw)) v}))
 
-(defmethod h/do! ::dropdown
+(defmethod uk-dropdown! ::dropdown
   [elem _ v]
   (.dropdown uk/uikit elem (clj->js v)))
 

@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-image (name kw)) v}))
 
-(defmethod h/do! ::image
+(defmethod uk-image! ::image
   [elem _ v]
   (.img uk/uikit elem (clj->js v)))

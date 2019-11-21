@@ -19,13 +19,16 @@
   [elem kw v]
   (h/do! elem :class {:uk-card v}))
 
-(h/defelem card [{:keys [default primary secondary] :as attr} kids]
+(h/defelem card [{:keys [default primary secondary hover small large] :as attr} kids]
   (h/div
-    (dissoc attr :default :primary :secondary)
+    (dissoc attr :default :primary :secondary :hover :small :large)
     ::card true
     ::default default
     ::primary primary
     ::secondary secondary
+    ::hover hover
+    ::small small
+    ::large large
     kids))
 
 (h/defelem header [attr kids]

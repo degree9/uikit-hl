@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-overlay (name kw)) v}))
 
-(defmethod h/do! ::overlay
+(defmethod uk-overlay! ::overlay
   [elem _ v]
   (h/do! elem :class {:uk-overlay v}))

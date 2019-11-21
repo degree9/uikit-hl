@@ -14,7 +14,7 @@
   [elem kw v]
   (h/do! elem :class {(format-placeholder (name kw)) v}))
 
-(defmethod h/do! ::placeholder
+(defmethod uk-placeholder! ::placeholder
   [elem _ v]
   (h/do! elem :class {:uk-placeholder v}))
 

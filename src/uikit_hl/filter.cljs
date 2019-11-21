@@ -16,6 +16,6 @@
   [elem kw v]
   (h/do! elem :class {(format-filter (name kw)) v}))
 
-(defmethod h/do! ::filter
+(defmethod uk-filter! ::filter
   [elem _ v]
   (.filter uk/uikit elem (clj->js v)))
