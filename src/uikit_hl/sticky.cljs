@@ -1,15 +1,21 @@
 (ns uikit-hl.sticky
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [hoplon.jquery]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-sticky* "")
+(defmulti uk-sticky! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-sticky
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-sticky! elem key val))
+
+(defn- format-sticky [sticky]
+  (str "uk-sticky-" sticky))
+
+(defmethod uk-sticky! ::default
+  [elem kw v]
+  (elem :class {(format-sticky (name kw)) v}))
+
+(defmethod uk-sticky! ::sticky
   [elem _ v]
-  (.sticky uikit elem (clj->js v)))
-
-(hl/defelem sticky [attr kids]
-  (let [sticky (:uk-sticky attr *uk-sticky*)
-        attr (assoc attr :uk-sticky sticky)]
-    (hl/div attr kids)))
+  (.sticky uk/uikit elem (clj->js v)))

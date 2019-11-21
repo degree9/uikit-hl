@@ -1,40 +1,35 @@
 (ns uikit-hl.section
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]))
+  (:require [hoplon.core :as h]
+            [hoplon.jquery]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-section* "")
-(def ^:dynamic *default*    nil)
-(def ^:dynamic *muted*      nil)
-(def ^:dynamic *primary*    nil)
-(def ^:dynamic *secondary*  nil)
-(def ^:dynamic *media*      nil)
-(def ^:dynamic *xsmall*     nil)
-(def ^:dynamic *small*      nil)
-(def ^:dynamic *large*      nil)
-(def ^:dynamic *xlarge*     nil)
-(def ^:dynamic *overlap*    nil)
+(defmulti uk-section! h/kw-dispatcher :default ::default)
 
-(hl/defelem section [attr kids]
-  (let [default   (:default   attr *default*)
-        muted     (:muted     attr *muted*)
-        primary   (:primary   attr *primary*)
-        secondary (:secondary attr *secondary*)
-        media     (:media     attr *media*)
-        xsmall    (:xsmall    attr *xsmall*)
-        small     (:small     attr *small*)
-        large     (:large     attr *large*)
-        xlarge    (:xlarge    attr *xlarge*)
-        overlap   (:overlap   attr *overlap*)
-        attr      (dissoc     attr :default :muted :primary :secondary :media
-                                   :xsmall :small :large :xlarge :overlap)]
-    (hl/div (core/assoc-class attr {:uk-section           true
-                                    :uk-section-default   default
-                                    :uk-section-muted     muted
-                                    :uk-section-primary   primary
-                                    :uk-section-secondary secondary
-                                    :uk-section-media     media
-                                    :uk-section-xsmall    xsmall
-                                    :uk-section-small     small
-                                    :uk-section-large     large
-                                    :uk-section-xlarge    xlarge
-                                    :uk-section-overlap   overlap}) kids)))
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-section! elem key val))
+
+(defn- format-section [section]
+  (str "uk-section-" section))
+
+(defmethod uk-section! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-section (name kw)) v}))
+
+(defmethod h/do! ::section
+  [elem _ v]
+  (h/do! elem :class {:uk-section v}))
+
+(h/defelem section [{:keys [default muted primary secondary xsmall small large xlarge] :as attr} kids]
+  (h/div
+    (dissoc attr :default :muted :primary :secondary :xsmall :small :large :xlarge)
+    ::section true
+    ::default default
+    ::muted muted
+    ::primary primary
+    ::secondary secondary
+    ::xsmall xsmall
+    ::small small
+    ::large large
+    ::xlarge xlarge
+    kids))

@@ -1,47 +1,67 @@
 (ns uikit-hl.modal
-  (:require [hoplon.core :as hl]
-            ["uikit" :as uikit]
-            [uikit-hl.core :as core]
-            [uikit-hl.close :as close]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-modal* "")
-(def ^:dynamic *default* nil)
-(def ^:dynamic *outside* nil)
-(def ^:dynamic *container* nil)
-(def ^:dynamic *full* nil)
+(defmulti uk-modal! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-modal
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-modal! elem key val))
+
+(defn- format-modal [modal]
+  (str "uk-modal-" modal))
+
+(defmethod uk-modal! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-modal (name kw)) v}))
+
+(defmethod h/do! ::modal
   [elem _ v]
-  (.modal uikit elem (clj->js v)))
+  (.modal uk/uikit elem (clj->js v)))
 
-(hl/defelem modal [attr kids]
-  (let [modal (:uk-modal attr *uk-modal*)
-        cont  (:container attr *container*)
-        full  (:full attr *full*)
-        attr  (assoc attr :uk-modal modal)]
-    (hl/div (core/assoc-class attr {:uk-modal-container cont
-                                    :uk-modal-full      full}) kids)))
+(h/defelem modal [{:keys [modal container full] :or {modal {}} :as attr} kids]
+  (h/div
+    (dissoc attr :container :full)
+    ::modal modal
+    ::container container
+    ::full full
+    kids))
 
-(hl/defelem dialog [attr kids]
-  (hl/div (core/assoc-class attr {:uk-modal-dialog true}) kids))
+(h/defelem dialog [attr kids]
+  (h/div
+    attr
+    ::dialog true
+    kids))
 
-(hl/defelem header [attr kids]
-  (hl/div (core/assoc-class attr {:uk-modal-header true}) kids))
+(h/defelem header [attr kids]
+  (h/div
+    attr
+    ::header true
+    kids))
 
-(hl/defelem body [attr kids]
-  (hl/div (core/assoc-class attr {:uk-modal-body true}) kids))
+(h/defelem body [attr kids]
+  (h/div
+    attr
+    ::body true
+    kids))
 
-(hl/defelem footer [attr kids]
-  (hl/div (core/assoc-class attr {:uk-modal-footer true}) kids))
+(h/defelem footer [attr kids]
+  (h/div
+    attr
+    ::footer true
+    kids))
 
-(hl/defelem title [attr kids]
-  (hl/h2 (core/assoc-class attr {:uk-modal-title true}) kids))
+(h/defelem title [attr kids]
+  (h/h2
+    attr
+    ::title true
+    kids))
 
-(hl/defelem close [attr kids]
-  (let [attr (assoc attr :type "button")
-        default (:default attr *default*)
-        outside (:outside attr *outside*)
-        full (:full attr *full*)]
-    (hl/a (core/assoc-class attr {:uk-modal-close-default default
-                                  :uk-modal-close-outside outside
-                                  :uk-modal-close-full full}) kids)))
+(h/defelem close [{:keys [default outside full] :as attr} kids]
+  (h/button
+    (dissoc attr :default :outside :full)
+    ::close true
+    ::close-default default
+    ::close-outside outside
+    ::close-full full
+    kids))
