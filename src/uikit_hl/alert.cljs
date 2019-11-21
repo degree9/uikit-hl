@@ -1,15 +1,30 @@
 (ns uikit-hl.alert
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-alert* "")
+(defmulti uk-alert! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-alert
+(defmethod h/do! ::default
+  [elem key val]
+  (uk-alert! elem key val))
+
+(defn- format-alert [alert]
+  (str "uk-alert-" alert))
+
+(defmethod uk-alert! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-alert (name kw)) v}))
+
+(defmethod h/do! ::alert
   [elem _ v]
-  (.alert uikit elem (clj->js v)))
+  (.alert uk/uikit elem (clj->js v)))
 
-(hl/defelem alert [attr kids]
-  (let [alert (:uk-alert attr *uk-alert*)
-        attr (assoc attr :uk-alert alert)]
-    (hl/div attr kids)))
+(h/defelem alert [{:keys [alert primary success warning danger] :or {alert {}} :as attr} kids]
+  (h/div
+    (dissoc attr :alert :primary :success :warning :danger)
+    ::alert alert
+    ::primary primary
+    ::success success
+    ::warning warning
+    ::danger danger
+    kids))
