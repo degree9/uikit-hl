@@ -1,45 +1,38 @@
 (ns uikit-hl.tab
   (:require [hoplon.core :as h]
+            [hoplon.jquery]
             [uikit-hl.core :as uk]))
 
 (defmulti uk-tab! h/kw-dispatcher :default ::default)
-
-(defn format-tab [grid]
-  (str "uk-tab-" grid))
 
 (defmethod h/do! ::default
   [elem key val]
   (uk-tab! elem key val))
 
-(defmethod uk-tab! ::default
-  [elem key val]
-  (h/do! elem :class {(format-tab (name key)) val}))
+(defn- format-tab [tab]
+  (str "uk-tab-" tab))
 
-(defmethod uk-tab! ::tab
-  [elem _ v]
-  (.tab uk/uikit elem (clj->js v)))
+(defmethod uk-tab! ::default
+  [elem kw v]
+  (h/do! elem :class {(format-tab (name kw)) v}))
 
 (defmethod uk-tab! ::active
-  [elem _ v]
+  [elem kw v]
   (h/do! elem :class {:uk-active v}))
 
 (defmethod uk-tab! ::disabled
-  [elem _ v]
+  [elem kw v]
   (h/do! elem :class {:uk-disabled v}))
 
-(h/defelem tab [{:keys [uk-tab left right bottom] :as attr} kids]
-  (h/ul
-    (dissoc attr :bottom :left :right :uk-tab)
-    ::tab    uk-tab
-    ::left   left
-    ::right  right
-    ::bottom bottom
-    kids))
+(defmethod h/do! ::tab
+  [elem _ v]
+  (.tab uk/uikit elem (clj->js v)))
 
-(h/defelem item [{:keys [active disabled] :as attr} kids]
-  (h/li
-    (h/a
-      (dissoc attr :active :disabled)
-      ::active   active
-      ::disabled disabled
-      kids)))
+(h/defelem tab [{:keys [tab bottom left right] :or {tab {}} :as attr} kids]
+  (h/ul
+    (dissoc attr :tab :bottom :left :right)
+    ::tab tab
+    ::bottom bottom
+    ::left left
+    ::right right
+    kids))
