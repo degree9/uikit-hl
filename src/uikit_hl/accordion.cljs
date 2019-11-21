@@ -1,23 +1,25 @@
 (ns uikit-hl.accordion
-  (:require [hoplon.core :as hl]
-            [uikit-hl.core :as core]
-            ["uikit" :as uikit]))
+  (:require [hoplon.core :as h]
+            [uikit-hl.core :as uk]))
 
-(def ^:dynamic *uk-accordion* "")
-(def ^:dynamic *title* "")
+(defmulti uk-accordion! h/kw-dispatcher :default ::default)
 
-(defmethod hl/do! :uk-accordion
-  [elem _ v]
-  (.accordion uikit elem (clj->js v)))
+(defmethod h/do! ::default
+  [elem kw val]
+  (uk-accordion! elem kw val))
 
-(hl/defelem accordion [attr kids]
-  (let [accordion (:uk-accordion attr *uk-accordion*)
-        attr      (assoc attr :uk-accordion accordion)]
-    (hl/ul attr kids)))
+(defmethod uk-accordion! ::default
+  [elem _ val]
+  (.accordion uikit elem (clj->js val)))
 
-(hl/defelem item [attr kids]
-  (let [title (:title attr *title*)
-        attr  (dissoc attr :title)]
-    (hl/li attr
-      (hl/h3  :class [:uk-accordion-title] (hl/text "~{title}"))
-      (hl/div :class [:uk-accordion-content] kids))))
+(hl/defelem accordion [{:keys [accordion] :or {accordion {}} :as attr} kids]
+  (hl/ul
+    (dissoc attr :accordion)
+    ::accordion accordion
+    kids))
+
+(hl/defelem title [attr kids]
+  (hl/h3 attr ::title true kids))
+
+(hl/defelem content [attr kids]
+  (hl/div attr ::content true kids))
