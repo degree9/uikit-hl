@@ -14,7 +14,7 @@ UIKit v3 Components for Hoplon.
     <img width="135" src="/.github/logo.png">
   </a>
   <br>
-  <b>D9 Enterprise is developed and maintained by Degree9</b>
+  <b>D9 UIkit-Hoplon is developed and maintained by Degree9</b>
 </p>
 
 ---
