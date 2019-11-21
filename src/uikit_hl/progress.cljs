@@ -1,5 +1,5 @@
 (ns uikit-hl.progress
-  (:require [hoplon.core :as hl]))
+  (:require [hoplon.core :as h]))
 
 (defmulti uk-progress! h/kw-dispatcher :default ::default)
 
@@ -18,5 +18,5 @@
   [elem _ v]
   (h/do! elem :class {:uk-progress v}))
 
-(hl/defelem progress [attr kids]
-  (hl/progress attr ::progress true kids))
+(h/defelem progress [attr kids]
+  (h/progress attr ::progress true kids))
