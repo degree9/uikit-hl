@@ -11,9 +11,9 @@
 
 (defn- format-visibility [visibility]
   (-> (str "uk-visibility-" visibility)
-    (s/replace "-s" "@s")
-    (s/replace "-m" "@m")
-    (s/replace "-l" "@l")))
+    (s/replace #"-s$" "@s")
+    (s/replace #"-m$" "@m")
+    (s/replace #"-l$" "@l")))
 
 (defmethod uk-visibility! ::default
   [elem kw v]

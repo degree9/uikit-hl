@@ -4,10 +4,10 @@
 
 (defn- format-column [column]
   (-> (str "uk-" column)
-    (s/replace "-s" "@s")
-    (s/replace "-m" "@m")
-    (s/replace "-l" "@l")
-    (s/replace "-xl" "@xl")))
+    (s/replace #"-s$" "@s")
+    (s/replace #"-m$" "@m")
+    (s/replace #"-l$" "@l")
+    (s/replace #"-xl$" "@xl")))
 
 (defmethod h/do! ::default
   [elem kw v]
