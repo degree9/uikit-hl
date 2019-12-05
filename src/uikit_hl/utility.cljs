@@ -44,7 +44,7 @@
 
 (defmethod uk-utility! ::overflow-auto
   [elem kw v]
-  (h/do! elem :class {:uk-overflow-auto v}))
+  (h/do! elem :uk-overflow-auto v))
 
 (defmethod uk-utility! ::resize
   [elem kw v]

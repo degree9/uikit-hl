@@ -32,7 +32,7 @@
   (h/do! elem :uk-navbar-toggle-icon v))
 
 (h/defelem navbar [{:keys [navbar container transparent primary center] :or {navbar {}} :as attr} kids]
-  (h/ul
+  (h/nav
     (dissoc attr :navbar :container :transparent :center)
     ::navbar navbar
     ::container container

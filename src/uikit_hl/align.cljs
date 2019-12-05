@@ -5,9 +5,9 @@
 
 (defn- format-align [align]
   (-> (str "uk-align-" align)
-    (s/replace "-s" "@s")
-    (s/replace "-m" "@m")
-    (s/replace "-l" "@l")))
+    (s/replace #"-s$" "@s")
+    (s/replace #"-m$" "@m")
+    (s/replace #"-l$" "@l")))
 
 (defmethod h/do! ::default
   [elem kw v]
