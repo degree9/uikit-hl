@@ -21,8 +21,5 @@
 (h/defelem breadcrumb [attr kids]
   (h/ul attr ::breadcrumb true kids))
 
-(h/defelem link-item [attr kids]
-  (h/li (h/a attr kids)))
-
-(h/defelem active-item [attr kids]
-  (h/li (h/span attr kids)))
+(h/defelem item [attr kids]
+  (h/li attr kids))
