@@ -11,7 +11,7 @@
   [elem kw val]
   (uk-accordion! elem kw val))
 
-(defmethod h/do! ::default
+(defmethod uk-accordion! ::default
   [elem kw v]
   (h/do! elem :class {(format-accordion (name kw)) v}))
 
@@ -26,7 +26,7 @@
     kids))
 
 (h/defelem title [attr kids]
-  (h/h3 attr ::title true kids))
+  (h/a attr ::title true kids))
 
 (h/defelem content [attr kids]
   (h/div attr ::content true kids))
