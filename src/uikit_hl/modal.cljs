@@ -1,6 +1,7 @@
 (ns uikit-hl.modal
   (:require [hoplon.core :as h]
-            [uikit-hl.core :as uk]))
+            [uikit-hl.core :as uk]
+            [uikit-hl.close :as close]))
 
 (defmulti uk-modal! h/kw-dispatcher :default ::default)
 
@@ -58,9 +59,8 @@
     kids))
 
 (h/defelem close [{:keys [default outside full] :as attr} kids]
-  (h/button
+  (close/close
     (dissoc attr :default :outside :full)
-    ::close true
     ::close-default default
     ::close-outside outside
     ::close-full full
