@@ -3,6 +3,8 @@
             [uikit-hl.core :as uk]
             [uikit-hl.close :as close]))
 
+(def modal! uk/modal)
+
 (defmulti uk-modal! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
@@ -18,7 +20,7 @@
 
 (defmethod uk-modal! ::modal
   [elem _ v]
-  (.modal uk/uikit elem (clj->js v)))
+  (modal! elem (clj->js v)))
 
 (h/defelem modal [{:keys [modal container full] :or {modal {}} :as attr} kids]
   (h/div
