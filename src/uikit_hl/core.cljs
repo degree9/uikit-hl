@@ -5,3 +5,6 @@
             [hoplon.jquery]))
 
 (def uikit uk)
+
+(defn modal [elem & [opts]]
+  (.modal uikit elem opts))
