@@ -1,4 +1,5 @@
 (ns uikit-hl.pagination
+  (:refer-clojure :exclude [next])
   (:require [hoplon.core :as h]))
 
 (defmulti uk-pagination! h/kw-dispatcher :default ::default)
@@ -38,7 +39,7 @@
   (h/ul attr ::pagination true kids))
 
 (h/defelem next [attr kids]
-  (h/li (h/a (h/span attr ::next true kids))))
+  (h/li (h/a kids (h/span attr ::next ""))))
 
 (h/defelem previous [attr kids]
-  (h/li (h/a (h/span attr ::previous true kids))))
+  (h/li (h/a (h/span attr ::previous "") kids)))

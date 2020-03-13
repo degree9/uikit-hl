@@ -5,6 +5,12 @@
 
 (def modal! uk/modal)
 
+(defn show! [modal]
+  (.show modal))
+
+(defn hide! [modal]
+  (.hide modal))
+
 (defmulti uk-modal! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
