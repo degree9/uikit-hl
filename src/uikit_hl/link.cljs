@@ -15,9 +15,10 @@
   [elem key val]
   (elem :class {(format-link (name key)) val}))
 
-(h/defelem link [{:keys [muted text heading reset] :as attr} kids]
+(h/defelem link [{:keys [toggle muted text heading reset] :as attr} kids]
   (h/a
-    (dissoc attr :muted :text :heading :reset)
+    (dissoc attr :toggle :muted :text :heading :reset)
+    ::toggle  toggle
     ::muted   muted
     ::text    text
     ::heading heading
