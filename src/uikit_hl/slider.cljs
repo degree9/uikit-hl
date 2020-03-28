@@ -3,6 +3,8 @@
             [hoplon.jquery]
             [uikit-hl.core :as uk]))
 
+(def slider! uk/slider)
+
 (defmulti uk-slider! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
@@ -18,7 +20,7 @@
 
 (defmethod uk-slider! ::slider
   [elem _ v]
-  (.slider uk/uikit elem (clj->js v)))
+  (slider! elem (clj->js v)))
 
 (defmethod uk-slider! ::item
   [elem kw v]
@@ -27,6 +29,12 @@
 (defmethod uk-slider! ::parallax
   [elem kw v]
   (h/do! elem ::uk-slider-parallax v))
+
+(h/defelem slider [{:keys [slider] :or {slider {}} :as attr} kids]
+  (h/div
+    attr
+    ::slider slider
+    kids))
 
 (h/defelem container [attr kids]
   (h/div attr ::container true kids))

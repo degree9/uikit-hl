@@ -8,3 +8,6 @@
 
 (defn modal [elem & [opts]]
   (.modal uikit elem opts))
+
+(defn slider [elem & [opts]]
+  (.slider uikit elem opts))
