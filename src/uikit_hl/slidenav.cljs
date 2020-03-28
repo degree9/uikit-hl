@@ -1,4 +1,5 @@
 (ns uikit-hl.slidenav
+  (:refer-clojure :exclude [next])
   (:require [hoplon.core :as h]))
 
 (defmulti uk-slidenav! h/kw-dispatcher :default ::default)
