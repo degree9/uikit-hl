@@ -1,6 +1,6 @@
 <p align="center"><img src="/.github/D9 UIkit-Hoplon.png" alt="d9uikit-hoplon" width="445px"></p>
 
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/uikit-hl.svg)](https://clojars.org/degree9/uikit-hl)<!--[![Dependencies Status](https://versions.deps.co/degree9/uikit-hl/status.svg)](https://versions.deps.co/degree9/uikit-hl)--> [![snapshot status][1]][2][![Downloads](https://versions.deps.co/degree9/uikit-hl/downloads.svg)](https://versions.deps.co/degree9/uikit-hl) [![Slack][slack]][d9-slack]
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/uikit-hl.svg)](https://clojars.org/degree9/uikit-hl)<!--[![Dependencies Status](https://versions.deps.co/degree9/uikit-hl/status.svg)](https://versions.deps.co/degree9/uikit-hl)--> [![snapshot status][1]][2] [![Downloads](https://versions.deps.co/degree9/uikit-hl/downloads.svg)](https://versions.deps.co/degree9/uikit-hl) [![Slack][slack]][d9-slack]
 <!---
 [![CircleCI](https://circleci.com/gh/degree9/uikit-hl.svg?style=svg)](https://circleci.com/gh/degree9/uikit-hl)
 --->
