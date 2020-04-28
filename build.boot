@@ -1,5 +1,4 @@
 (defn get-deps    []     (-> "./dependencies.edn" slurp read-string))
-;(defn get-devdeps []     (read-file "./dev_dependencies.edn"))
 
 (set-env! :resource-paths #{"src"} :dependencies (get-deps))
 
