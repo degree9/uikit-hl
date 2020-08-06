@@ -46,11 +46,13 @@
   [elem kw v]
   (elem :class {:uk-input v}))
 
-(h/defelem input [{:keys [blank] :as attr} kids]
+(h/defelem input [{:keys [blank success danger] :as attr} kids]
   (h/input
-    (dissoc attr :blank)
-    ::input true
-    ::blank blank
+    (dissoc attr :blank :success :danger)
+    ::input   true
+    ::blank   blank
+    ::success success
+    ::danger  danger
     kids))
 
 (defmethod uk-form! ::textarea
