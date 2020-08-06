@@ -23,9 +23,3 @@
 
 (h/defelem item [attr kids]
   (h/li attr kids))
-
-(h/defelem link [attr kids]
-  (item (h/a attr kids)))
-
-(h/defelem active [attr kids]
-  (item (h/span attr kids)))
