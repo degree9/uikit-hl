@@ -28,4 +28,4 @@
   (item (h/a attr kids)))
 
 (h/defelem active [attr kids]
-  (item (h/a attr kids)))
+  (item (h/span attr kids)))
