@@ -98,7 +98,7 @@
     kids))
 
 (h/defelem item [attr kids]
-  (h/div
+  (h/li
     attr
     ::item true
     kids))
