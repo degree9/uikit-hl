@@ -11,4 +11,4 @@
 
 (defmethod uk-lightbox! ::default
   [elem kw v]
-  (.lightboxPanel uk/uikit elem (clj->js v)))
+  (uk/lightboxPanel elem v))

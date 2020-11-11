@@ -17,7 +17,7 @@
 
 (defmethod uk-offcanvas! ::offcanvas
   [elem _ v]
-  (.offcanvas uk/uikit elem (clj->js v)))
+  (uk/offcanvas elem v))
 
 (h/defelem content [attr kids]
   (h/div

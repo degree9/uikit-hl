@@ -11,4 +11,4 @@
 
 (defmethod uk-svg! ::default
   [elem kw v]
-  (.svg uk/uikit elem (clj->js v)))
+  (uk/svg elem v))

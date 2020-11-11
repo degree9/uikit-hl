@@ -136,4 +136,4 @@
 
 (defmethod uk-form! ::custom
   [elem _ v]
-  (.formCustom uk/uikit elem (clj->js v)))
+  (uk/formCustom elem v))

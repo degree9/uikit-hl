@@ -18,4 +18,4 @@
 
 (defmethod uk-sticky! ::sticky
   [elem _ v]
-  (.sticky uk/uikit elem (clj->js v)))
+  (uk/sticky elem v))

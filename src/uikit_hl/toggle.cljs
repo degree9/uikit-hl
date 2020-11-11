@@ -5,9 +5,9 @@
 (defmulti uk-toggle! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
-  [elem key val]
-  (uk-toggle! elem key val))
+  [elem key v]
+  (uk-toggle! elem key v))
 
 (defmethod uk-toggle! ::default
-  [elem key val]
-  (.toggle uk/uikit elem (clj->js val)))  
+  [elem key v]
+  (uk/toggle elem v))

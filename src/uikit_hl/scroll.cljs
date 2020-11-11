@@ -11,4 +11,4 @@
 
 (defmethod uk-scroll! ::default
   [elem kw v]
-  (.scroll uk/uikit elem (clj->js v)))
+  (uk/scroll elem v))

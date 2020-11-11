@@ -17,7 +17,7 @@
 
 (defmethod uk-navbar! ::navbar
   [elem _ v]
-  (.navbar uk/uikit elem (clj->js v)))
+  (uk/navbar elem v))
 
 (defmethod uk-navbar! ::active
   [elem kw v]
@@ -26,10 +26,6 @@
 (defmethod uk-navbar! ::parent
   [elem kw v]
   (h/do! elem :class {:uk-active v}))
-
-(defmethod uk-navbar! ::toggle
-  [elem kw v]
-  (h/do! elem :uk-navbar-toggle-icon v))
 
 (h/defelem navbar [{:keys [navbar container transparent primary center] :or {navbar {}} :as attr} kids]
   (h/nav
@@ -107,6 +103,12 @@
   (h/a
     attr
     ::toggle true
+    kids))
+
+(h/defelem toggle-icon [attr kids]
+  (h/a
+    attr
+    ::toggle-icon true
     kids))
 
 (h/defelem dropdown [attr kids]

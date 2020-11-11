@@ -18,4 +18,4 @@
 
 (defmethod uk-slideshow! ::slideshow
   [elem _ v]
-  (.slideshow uk/uikit elem (clj->js v)))
+  (uk/slideshow elem v))

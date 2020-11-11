@@ -11,4 +11,4 @@
 
 (defmethod uk-leader! ::default
   [elem kw v]
-  (.leader uk/uikit elem (clj->js v)))
+  (uk/leader elem v))

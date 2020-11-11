@@ -18,7 +18,7 @@
 
 (defmethod uk-grid! ::grid
   [elem _ v]
-  (.grid uk/uikit elem (clj->js v)))
+  (uk/grid elem v))
 
 (h/defelem grid [{:keys [grid small medium large collapse divider match stack] :or {grid {}} :as attr} kids]
   (h/div

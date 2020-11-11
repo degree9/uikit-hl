@@ -18,4 +18,4 @@
 
 (defmethod uk-drop! ::drop
   [elem _ v]
-  (.drop uk/uikit elem (clj->js v)))
+  (uk/drop elem v))
