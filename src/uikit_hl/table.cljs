@@ -1,6 +1,5 @@
 (ns uikit-hl.table
   (:require [hoplon.core :as h]
-            [javelin.core :as j]
             [uikit-hl.core :as core]))
 
 (defmulti uk-table! h/kw-dispatcher :default ::default)

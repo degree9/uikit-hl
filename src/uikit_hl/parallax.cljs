@@ -18,4 +18,4 @@
 
 (defmethod uk-parallax! ::parallax
   [elem _ v]
-  (.parallax uk/uikit elem (clj->js v)))
+  (uk/parallax elem v))

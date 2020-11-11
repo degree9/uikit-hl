@@ -18,4 +18,4 @@
 
 (defmethod uk-image! ::image
   [elem _ v]
-  (.img uk/uikit elem (clj->js v)))
+  (uk/img elem v))

@@ -8,16 +8,16 @@
 (defmulti uk-accordion! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
-  [elem kw val]
-  (uk-accordion! elem kw val))
+  [elem kw v]
+  (uk-accordion! elem kw v))
 
 (defmethod uk-accordion! ::default
   [elem kw v]
   (h/do! elem :class {(format-accordion (name kw)) v}))
 
 (defmethod uk-accordion! ::accordion
-  [elem _ val]
-  (.accordion uk/uikit elem (clj->js val)))
+  [elem _ v]
+  (uk/accordion elem v))
 
 (h/defelem accordion [{:keys [accordion] :or {accordion {}} :as attr} kids]
   (h/ul

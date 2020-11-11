@@ -18,4 +18,4 @@
 
 (defmethod uk-filter! ::filter
   [elem _ v]
-  (.filter uk/uikit elem (clj->js v)))
+  (uk/filter elem v))

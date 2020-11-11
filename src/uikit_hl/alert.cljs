@@ -5,8 +5,8 @@
 (defmulti uk-alert! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
-  [elem key val]
-  (uk-alert! elem key val))
+  [elem key v]
+  (uk-alert! elem key v))
 
 (defn- format-alert [alert]
   (str "uk-alert-" alert))
@@ -17,7 +17,7 @@
 
 (defmethod uk-alert! ::alert
   [elem _ v]
-  (.alert uk/uikit elem (clj->js v)))
+  (uk/alert elem v))
 
 (h/defelem alert [{:keys [alert primary success warning danger] :or {alert {}} :as attr} kids]
   (h/div

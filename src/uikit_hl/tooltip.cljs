@@ -6,8 +6,8 @@
 (defmulti uk-tooltip! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
-  [elem key val]
-  (uk-tooltip! elem key val))
+  [elem key v]
+  (uk-tooltip! elem key v))
 
 (defn- format-tooltip [tooltip]
   (str "uk-tooltip-" tooltip))
@@ -18,4 +18,4 @@
 
 (defmethod uk-tooltip! ::tooltip
   [elem _ v]
-  (.tooltip uk/uikit elem (clj->js v)))
+  (uk/tooltip elem v))

@@ -18,4 +18,4 @@
 
 (defmethod uk-upload! ::upload
   [elem _ v]
-  (.upload uk/uikit elem (clj->js v)))
+  (uk/upload elem v))

@@ -19,11 +19,13 @@
   [elem kw v]
   (h/do! elem :class {:uk-container v}))
 
-(h/defelem container [{:keys [small large expand] :as attr} kids]
+(h/defelem container [{:keys [xsmall small large xlarge expand] :as attr} kids]
   (h/div
     (dissoc attr :small :large :expand)
     ::container true
-    ::small small
-    ::large large
+    ::xsmall xsmall
+    ::small  small
+    ::large  large
+    ::xlarge xlarge
     ::expand expand
     kids))

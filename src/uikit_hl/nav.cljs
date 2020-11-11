@@ -17,7 +17,7 @@
 
 (defmethod uk-nav! ::nav
   [elem _ v]
-  (.nav uk/uikit elem (clj->js v)))
+  (uk/nav elem v))
 
 (defmethod uk-nav! ::active
   [elem kw v]

@@ -5,8 +5,8 @@
 (defmulti uk-dropdown! h/kw-dispatcher :default ::default)
 
 (defmethod h/do! ::default
-  [elem key val]
-  (uk-dropdown! elem key val))
+  [elem key v]
+  (uk-dropdown! elem key v))
 
 (defn- format-dropdown [dropdown]
   (str "uk-dropdown-" dropdown))
@@ -17,7 +17,7 @@
 
 (defmethod uk-dropdown! ::dropdown
   [elem _ v]
-  (.dropdown uk/uikit elem (clj->js v)))
+  (uk/dropdown elem v))
 
 (h/defelem dropdown [{:keys [dropdown] :or {dropdown {}} :as attr} kids]
   (h/div

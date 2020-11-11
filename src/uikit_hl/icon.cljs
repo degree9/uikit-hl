@@ -3,8 +3,8 @@
             [uikit-hl.core :as uk]
             ["uikit/dist/js/uikit-icons" :as icons]))
 
-;; Init UIKit Icons ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(icons uk/uikit)
+;; Init UIkit Icons ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(.use uk/uikit icons)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmulti uk-icon! h/kw-dispatcher :default ::default)
@@ -15,7 +15,7 @@
 
 (defmethod uk-icon! ::default
   [elem kw v]
-  (.icon uk/uikit elem (clj->js v)))
+  (uk/icon elem v))
 
 (h/defelem icon [attr kids]
   (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))

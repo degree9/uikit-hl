@@ -20,6 +20,9 @@
   [elem _ v]
   (h/do! elem :class {:uk-subnav v}))
 
+(h/defelem item [attr kids]
+  (h/li attr kids))
+
 (h/defelem subnav [{:keys [divider pill] :as attr} kids]
   (h/ul
     (dissoc attr :divider)

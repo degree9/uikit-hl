@@ -2,4 +2,4 @@
   (:require [uikit-hl.core :as uk]))
 
 (defn notification [opts]
-  (.notification uk/uikit (clj->js opts)))
+  (uk/notification (clj->js opts)))

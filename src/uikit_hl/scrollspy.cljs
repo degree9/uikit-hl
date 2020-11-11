@@ -11,4 +11,4 @@
 
 (defmethod uk-scrollspy! ::default
   [elem kw v]
-  (.scrollspyNav uk/uikit elem (clj->js v)))
+  (uk/scrollspyNav elem v))

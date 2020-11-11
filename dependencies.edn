@@ -1,2 +1,2 @@
-[[degree9/boot-semver        "1.8.0" :scope "test"]
- [hoplon/hoplon              "7.2.0"]]
+[[degree9/boot-semver        "1.9.0-SNAPSHOT" :scope "test"]
+ [hoplon/hoplon              "7.3.0-SNAPSHOT"]]

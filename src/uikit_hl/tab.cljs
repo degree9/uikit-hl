@@ -26,7 +26,7 @@
 
 (defmethod uk-tab! ::tab
   [elem _ v]
-  (.tab uk/uikit elem (clj->js v)))
+  (uk/tab elem v))
 
 (h/defelem tab [{:keys [tab bottom left right] :or {tab {}} :as attr} kids]
   (h/ul

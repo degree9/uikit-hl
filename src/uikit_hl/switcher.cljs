@@ -17,7 +17,7 @@
 
 (defmethod uk-switcher! ::switcher
   [elem _ v]
-  (.switcher uk/uikit elem (clj->js v)))
+  (uk/switcher elem v))
 
 (defmethod uk-switcher! ::item
   [elem _ v]

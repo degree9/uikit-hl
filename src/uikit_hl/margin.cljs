@@ -18,4 +18,4 @@
 
 (defmethod uk-margin! ::margin
   [elem _ v]
-  (.margin uk/uikit elem (clj->js v)))
+  (uk/margin elem v))

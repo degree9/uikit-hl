@@ -1,7 +1,8 @@
 (ns uikit-hl.height
   (:require [clojure.string :as s]
             [hoplon.core :as h]
-            [hoplon.jquery]))
+            [hoplon.jquery]
+            [uikit-hl.core :as uk]))
 
 (defmulti uk-height! h/kw-dispatcher :default ::default)
 
@@ -24,10 +25,7 @@
 
 (defmethod uk-height! ::viewport
   [elem _ v]
-  (h/do! elem :uk-height-viewport
-    (cond
-      (map? v) (.stringify js/JSON (clj->js v))
-      (string? v) v)))
+  (uk/heightViewport elem v))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -35,9 +33,6 @@
 
 (defmethod uk-height! ::match
   [elem _ v]
-  (h/do! elem :uk-height-match
-    (cond
-      (map? v) (.stringify js/JSON (clj->js v))
-      (string? v) v)))
+  (uk/heightMatch elem v))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

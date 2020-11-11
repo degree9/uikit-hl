@@ -49,4 +49,4 @@
 
 (defmethod uk-visibility! ::visibility
   [elem _ v]
-  (.visibility uk/uikit elem (clj->js v)))
+  (uk/visibility elem v))

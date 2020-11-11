@@ -11,4 +11,4 @@
 
 (defmethod uk-video! ::default
   [elem kw v]
-  (.video uk/uikit elem (clj->js v)))
+  (uk/video elem v))
