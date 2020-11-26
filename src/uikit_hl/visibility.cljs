@@ -1,7 +1,7 @@
 (ns uikit-hl.visibility
-  (:require [hoplon.core :as h]
-            [hoplon.jquery]
-            [uikit-hl.core :as uk]))
+  (:require [clojure.string :as s]
+            [hoplon.core :as h]
+            [hoplon.jquery]))
 
 (defmulti uk-visibility! h/kw-dispatcher :default ::default)
 
