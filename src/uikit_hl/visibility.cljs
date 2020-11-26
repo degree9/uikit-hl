@@ -10,7 +10,7 @@
   (uk-visibility! elem key val))
 
 (defn- format-visibility [visibility]
-  (-> (str "uk-visibility-" visibility)
+  (-> (str "uk-" visibility)
     (s/replace #"-s$" "@s")
     (s/replace #"-m$" "@m")
     (s/replace #"-l$" "@l")))
@@ -46,7 +46,3 @@
 (defmethod uk-visibility! ::hidden-notouch
   [elem kw v]
   (h/do! elem :class {:hidden-notouch v}))
-
-(defmethod uk-visibility! ::visibility
-  [elem _ v]
-  (uk/visibility elem v))

@@ -9,15 +9,27 @@
 
 (defmulti uk-icon! h/kw-dispatcher :default ::default)
 
+(defn format-icon [icon]
+  (str "uk-icon-" icon))
+
 (defmethod h/do! ::default
-  [elem key val]
-  (uk-icon! elem key val))
+  [elem kw v]
+  (uk-icon! elem kw v))
 
 (defmethod uk-icon! ::default
   [elem kw v]
+  (h/do! elem :class {(format-icon (name kw)) v}))
+
+(defmethod uk-icon! ::icon
+  [elem kw v]
   (uk/icon elem v))
 
-(h/defelem icon [attr kids]
-  (let [icon (:uk-icon attr (select-keys attr [:icon :ratio]))
-        attr (assoc attr :uk-icon icon)]
-    (h/span attr)))
+(h/defelem icon [{:keys [link button image] :as attr} kids]
+  (let [icon (select-keys attr [:icon :ratio])]
+    (prn link button image attr icon)
+    (h/span
+      (dissoc attr :link :button :image :icon :ratio)
+      ::icon   icon
+      ::link   link
+      ::button button
+      ::image  image)))

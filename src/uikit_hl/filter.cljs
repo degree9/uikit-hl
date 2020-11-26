@@ -19,3 +19,7 @@
 (defmethod uk-filter! ::filter
   [elem _ v]
   (uk/filter elem v))
+
+(defmethod uk-filter! ::control
+  [elem _ v]
+  (h/do! elem :uk-filter-control (clj->js v)))
