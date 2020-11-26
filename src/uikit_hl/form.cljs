@@ -36,10 +36,11 @@
     ::label true
     kids))
 
-(h/defelem controls [attr kids]
+(h/defelem controls [{:keys [text] :as attr} kids]
   (h/div
-    attr
+    (dissoc attr :text)
     ::controls true
+    ::controls-text text
     kids))
 
 (defmethod uk-form! ::input

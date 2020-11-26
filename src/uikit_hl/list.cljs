@@ -1,4 +1,5 @@
 (ns uikit-hl.list
+  (:refer-clojure :exclude [list])
   (:require [hoplon.core :as h]))
 
 (defmulti uk-list! h/kw-dispatcher :default ::default)
@@ -18,8 +19,25 @@
   [elem kw v]
   (h/do! elem :class {:uk-list v}))
 
-(h/defelem list [attr kids]
-  (h/ul attr ::list true kids))
+(h/defelem list [{:keys [disc circle square decimal hyphen muted emphasis primary secondary bullet divider striped large collapse] :as attr} kids]
+  (h/ul
+    (dissoc attr :disc :circle :square :decimal :hyphen :muted :emphasis :primary :secondary :bullet :divider :striped :large :collapse)
+    ::list      true
+    ::disc      disc
+    ::circle    circle
+    ::square    square
+    ::decimal   decimal
+    ::hyphen    hyphen
+    ::muted     muted
+    ::emphasis  emphasis
+    ::primary   primary
+    ::secondary secondary
+    ::bullet    bullet
+    ::divider   divider
+    ::striped   striped
+    ::large     large
+    ::collapse  collapse
+    kids))
 
 (h/defelem item [attr kids]
   (h/li attr kids))

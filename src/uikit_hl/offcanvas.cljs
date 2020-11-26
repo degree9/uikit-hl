@@ -19,12 +19,6 @@
   [elem _ v]
   (uk/offcanvas elem v))
 
-(h/defelem content [attr kids]
-  (h/div
-    attr
-    ::content true
-    kids))
-
 (h/defelem offcanvas [{:keys [offcanvas] :or {offcanvas {}} :as attr} kids]
   (h/div
     attr
